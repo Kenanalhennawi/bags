@@ -1,18 +1,12 @@
-// interline/delta.js
-// Contains all information for Delta Air Lines (DL), including full contact details.
 
-// Exported data object for Delta Air Lines
 export const deltaInfo = {
-    // The main baggage overview page with the fee calculator
     baggagePageUrl: "https://www.delta.com/us/en/baggage/overview#estimate",
     
-    // Specific pages for more details
     carryOnBaggageUrl: "https://www.delta.com/us/en/baggage/carry-on-baggage",
     militaryBaggageUrl: "https://www.delta.com/us/en/baggage/checked-baggage/military-baggage-allowance",
     medallionBaggageUrl: "https://www.delta.com/us/en/baggage/checked-baggage/medallion-baggage-allowance",
     amexBaggageUrl: "https://www.delta.com/us/en/baggage/checked-baggage/medallion-baggage-allowance#credit_card",
 
-    // Standard fee information extracted from the text
     standardFees: {
         title: "Common Domestic U.S. Baggage Fees",
         note: "Applies to Delta Comfort+ and Main Cabin customers without Medallion Status or other exceptions. Prices are each way for standard bags under 50 lbs (23 kg) and 62 inches (158 cm). Fees vary by specific route and fare class.",
@@ -24,7 +18,6 @@ export const deltaInfo = {
         ]
     },
 
-    // Information on waivers and exceptions
     exceptions: {
         title: "Fee Waivers & Exceptions",
         items: [
@@ -34,14 +27,12 @@ export const deltaInfo = {
         ]
     },
     
-    // General Notes section
     generalNotes: [
         "To speak with a representative about a new or existing reservation, call 800-221-1212 (24/7).",
         "If you are a Medallion® Member, check the Contact Us section in the Fly Delta mobile app for your dedicated phone line.",
         "If you purchased a ticket from a third-party travel agency, please refer directly to your travel agent for changes or cancellations."
     ],
 
-    // --- THIS IS THE FULL CONTACT DETAILS SECTION YOU REQUESTED ---
     contactDetails: {
         title: "Delta Air Lines Contact Information",
         departments: [
@@ -71,7 +62,6 @@ export function displayDeltaInfo(placeholderElement) {
     const info = deltaInfo;
     let html = "";
 
-    // CTA Section for Baggage Page
     html += `
         <div class="calculator-cta-section">
             <span class="calculator-cta-icon">✈️</span>
@@ -84,7 +74,6 @@ export function displayDeltaInfo(placeholderElement) {
         <hr style="margin: 20px 0;">
     `;
 
-    // Standard Fees Section
     if (info.standardFees) {
         html += `<h4>${info.standardFees.title}</h4>`;
         if (info.standardFees.note) {
@@ -99,7 +88,6 @@ export function displayDeltaInfo(placeholderElement) {
         html += `</tbody></table>`;
     }
 
-    // Exceptions and Waivers Section
     if (info.exceptions) {
         html += `<hr style="margin: 20px 0;"><h4>${info.exceptions.title}</h4>`;
         html += `<ul>`;
@@ -109,7 +97,6 @@ export function displayDeltaInfo(placeholderElement) {
         html += `</ul>`;
     }
 
-    // General Notes Section
     if (info.generalNotes && info.generalNotes.length > 0) {
         html += `<hr style="margin: 20px 0;"><h4>Additional Assistance</h4>`;
         html += `<ul>`;
@@ -119,7 +106,6 @@ export function displayDeltaInfo(placeholderElement) {
         html += `</ul>`;
     }
 
-    // --- THIS IS THE DISPLAY LOGIC FOR THE CONTACT DETAILS ---
     if (info.contactDetails) {
         html += `<hr style="margin: 20px 0;"><h3>${info.contactDetails.title}</h3>`;
         info.contactDetails.departments.forEach(dept => {

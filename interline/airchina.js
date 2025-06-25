@@ -1,7 +1,4 @@
-// interline/airchina.js
-// Contains information and display logic for Air China (CA).
 
-// Exported data object for Air China
 export const airChinaInfo = {
     baggagePageUrl: "https://www.airchina.ae/AE/GB/info/checked-baggage/",
     generalPacking: [
@@ -21,7 +18,7 @@ export const airChinaInfo = {
     },
     freeAllowanceConcept: "Free baggage allowances on Air China-operated flights are determined by either a 'Weight Concept' (typically for Domestic Routes in China, Mainland) or a 'Piece Concept' (for international/regional routes, including Hong Kong SAR, Macao SAR, and Taiwan region). The specific allowance depends on your route and fare class. Please refer to Air China's official website and documentation for detailed tables.",
     excessBaggageConcept: "Fee schedules for excess ordinary checked baggage and special baggage are detailed in Air China's official documents (often as Annexes) and can vary based on IATA World Area Divisions and whether the route is a 'Piece Concept' or 'Weight Concept' route. For domestic carriage under Weight Concept, excess is typically charged at 1.5% of the adult Economy Class one-way fare per additional kilogram.",
-    contactDetails: { // Contact details grouped at the end
+    contactDetails: { 
         callCenter: [
             { region: "Americas", contact: "0018008828122-4-3", hours: "Business Hours (Pacific Time): 06:00-21:00 Mon-Fri, 07:30-16:00 Sat, Sun & public holidays" },
             { region: "China", contact: "+86-10-95583 / +86-10-59281588", hours: "24/7" },
@@ -60,7 +57,6 @@ export function displayAirChinaInfo(placeholderElement) {
     const info = airChinaInfo;
     let html = "";
 
-    // CTA Section for Baggage Page
     html += `
         <div class="calculator-cta-section">
             <span class="calculator-cta-icon">✈️</span>
@@ -73,7 +69,6 @@ export function displayAirChinaInfo(placeholderElement) {
         <hr style="margin: 20px 0;">
     `;
 
-    // General Baggage Information
     html += `<h4>General Packing Requirements:</h4><ul>`;
     info.generalPacking.forEach(note => html += `<li>${note}</li>`);
     html += `</ul>
@@ -90,7 +85,6 @@ export function displayAirChinaInfo(placeholderElement) {
         <p><strong>Special Baggage & Excess Fees:</strong> ${info.excessBaggageConcept}</p>
     `;
     
-    // Contact Information Section - Placed at the end
     if (info.contactDetails) {
         html += `<hr style="margin: 20px 0;"><h4>Contact Air China (CA):</h4>`;
         

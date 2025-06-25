@@ -1,7 +1,4 @@
-// interline/aircanada.js
-// Contains information and display logic for Air Canada (AC).
 
-// Exported data object for Air Canada
 export const airCanadaInfo = {
     baggagePageUrl: "https://www.aircanada.com/ca/en/aco/home/plan/baggage.html#/",
     generalBaggageNotes: [ 
@@ -13,7 +10,7 @@ export const airCanadaInfo = {
         "Fees also apply for additional bags beyond the standard allowance.",
         "For itineraries involving codeshare partners or other airlines, the baggage rules of the airline designated as the Most Significant Carrier (MSC) or the first marketing carrier typically apply. Always verify with Air Canada or the operating carrier."
     ],
-    contactDetails: { // Contact details grouped at the end
+    contactDetails: { 
         contactIntro: "Please first make sure your query isn't covered by other options on their page, as call centre agents may not be able to access certain information.",
         contacts: [
             {
@@ -51,7 +48,6 @@ export function displayAirCanadaInfo(placeholderElement) {
     const info = airCanadaInfo;
     let html = "";
 
-    // CTA Section for Baggage Page
     html += `
         <div class="calculator-cta-section">
             <span class="calculator-cta-icon">✈️</span>
@@ -64,14 +60,12 @@ export function displayAirCanadaInfo(placeholderElement) {
         <hr style="margin: 20px 0;">
     `;
 
-    // General Checked Baggage Notes
     if (info.generalBaggageNotes && info.generalBaggageNotes.length > 0) {
         html += `<h4>General Checked Baggage Notes (Air Canada):</h4><ul>`;
         info.generalBaggageNotes.forEach(note => html += `<li>${note}</li>`);
         html += `</ul>`;
     }
     
-    // Contact Information Section - Placed at the end
     if (info.contactDetails) {
         html += `<hr style="margin: 20px 0;"><h4>Contact Air Canada:</h4>`;
         if (info.contactDetails.contactIntro) {

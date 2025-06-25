@@ -1,7 +1,4 @@
-// interline/alaskaAirlines.js
-// Contains information and display logic for Alaska Airlines (AS).
 
-// Exported data object for Alaska Airlines
 export const alaskaAirlinesInfo = {
     officialBaggagePageUrl: "https://www.alaskaair.com/content/travel-info/baggage",
     batteriesElectronicsPageUrl: "https://www.alaskaair.com/content/travel-info/baggage/prohibited-items/spare-batteries-electronic-devices",
@@ -80,7 +77,7 @@ export const alaskaAirlinesInfo = {
         multipleAirlines: "If traveling on >1 airline, other airline's rules/fees may apply. Check ticket or call Alaska Airlines.",
         multipleTickets: "Each ticket is a separate journey. Baggage checked to final destination of first ticket only. Allow time to collect/re-check. Fees for each carrier may apply."
     },
-    contactDetails: { // Contact details grouped at the end
+    contactDetails: { 
         chatText: "Text us: 82008",
         chatNote: "Message frequency varies based on chat activity. Message and data rates may apply. Chats and texts may be monitored or recorded by Alaska Airlines and our third-party providers to help improve our services in accordance with our privacy policy.",
         usCanada: [
@@ -114,7 +111,6 @@ export function displayAlaskaAirlinesInfo(placeholderElement) {
     const info = alaskaAirlinesInfo;
     let html = "";
 
-    // --- NEW: CTA Section modeled after the Air Canada example ---
     html += `
         <div class="calculator-cta-section">
             <span class="calculator-cta-icon">✈️</span>
@@ -127,9 +123,7 @@ export function displayAlaskaAirlinesInfo(placeholderElement) {
         <hr style="margin: 20px 0;">
     `;
     
-    // --- ORIGINAL: All detailed information is kept below ---
 
-    // Carry-on Baggage
     if (info.carryOn) {
         html += `<h3>Carry-on Baggage</h3>
                  <p><strong>Allowance:</strong> ${info.carryOn.allowance}</p>
@@ -146,14 +140,12 @@ export function displayAlaskaAirlinesInfo(placeholderElement) {
         }
     }
 
-    // Personal Item
     if (info.personalItem) {
         html += `<h4>Personal Item</h4>
                  <p>${info.personalItem.description}</p>`;
         if (info.personalItem.medicallyNecessary) html += `<p>${info.personalItem.medicallyNecessary}</p>`;
     }
     
-    // Special Carry-on Items
     if (info.specialCarryOnItems && info.specialCarryOnItems.items && info.specialCarryOnItems.items.length > 0) {
         html += `<h4>Special Carry-on Items</h4>`;
         if (info.specialCarryOnItems.note) html += `<p class="small-note">${info.specialCarryOnItems.note}</p>`;
@@ -162,12 +154,11 @@ export function displayAlaskaAirlinesInfo(placeholderElement) {
         html += `</ul>`;
     }
 
-    // Exempt from Carry-on Limit
     if (info.exemptFromCarryOnLimit && info.exemptFromCarryOnLimit.length > 0) {
         html += `<h4>Items Not Counting Towards Carry-on Limit:</h4><ul>`;
         info.exemptFromCarryOnLimit.forEach(item => {
             let listItem = item;
-            if (item.includes("strollers")) { // Make the link specific
+            if (item.includes("strollers")) { 
                 listItem = item.replace("strollers (space availability; battery link for strollers with power).", 
                                        `strollers (space availability; see <a href="${info.batteriesElectronicsPageUrl}" target="_blank" rel="noopener noreferrer">Batteries and Electronics page</a> if the stroller has a battery or power bank).`);
             }
@@ -180,7 +171,6 @@ export function displayAlaskaAirlinesInfo(placeholderElement) {
     }
     html += `<hr>`;
 
-    // Checked Baggage
     if (info.checkedBaggage) {
         html += `<h3>Checked Baggage</h3>`;
         if (info.checkedBaggage.paymentMethods) html += `<p>Fees can be paid: ${info.checkedBaggage.paymentMethods}.</p>`;
@@ -221,13 +211,12 @@ export function displayAlaskaAirlinesInfo(placeholderElement) {
         if (info.checkedBaggage.smartBagsNote) {
             html += `<p class="small-note">For Smart bags, see the <a href="${info.batteriesElectronicsPageUrl}" target="_blank" rel="noopener noreferrer">Batteries and Electronics page</a>.</p>`;
         }
-        if (info.sportingEquipmentUrl) { // Assuming this was meant for checked baggage context
+        if (info.sportingEquipmentUrl) { 
              html += `<p class="small-note">For sporting equipment exceptions, see <a href="${info.sportingEquipmentUrl}" target="_blank" rel="noopener noreferrer">sporting equipment page</a>.</p>`;
         }
         html += `<hr>`;
     }
 
-    // Airport Procedures
     if (info.airportProcedures) {
         html += `<h3>Getting Your Bags to the Airport</h3>`;
         if (info.airportProcedures.acceptanceHoursVary) html += `<p>${info.airportProcedures.acceptanceHoursVary}</p>`;
@@ -241,7 +230,6 @@ export function displayAlaskaAirlinesInfo(placeholderElement) {
         html += `<hr>`;
     }
 
-    // Multiple Flights / Tickets
     if (info.multipleFlights) {
         html += `<h3>Travel with Multiple Flights or Tickets</h3>`;
         if (info.multipleFlights.alaskaOnly) html += `<p><strong>Multiple Alaska/Partner Flights:</strong> ${info.multipleFlights.alaskaOnly}</p>`;
@@ -251,7 +239,6 @@ export function displayAlaskaAirlinesInfo(placeholderElement) {
         html += `<hr>`;
     }
 
-    // Contact Information Section - Placed at the end
     if (info.contactDetails) {
         html += `<h3>Contact Alaska Airlines</h3>`;
         if (info.contactDetails.chatText) html += `<p>${info.contactDetails.chatText}</p>`;

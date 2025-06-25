@@ -1,15 +1,11 @@
-// interline/chinasouthern.js
-// Module for China Southern Airlines (CZ) baggage information
 
 export const chinaSouthernInfo = {
     name: "China Southern Airlines (CZ)",
-    // --- CTA Block Data ---
     ctaTitle: "China Southern Airlines Baggage Information",
     ctaText: "For comprehensive details on baggage allowances, excess baggage fees, special baggage, and other related policies for your China Southern flight, please visit their official website.",
     ctaButtonText: "VISIT CHINA SOUTHERN BAGGAGE INFO",
     officialBaggagePageUrl: "https://www.csair.com/global/en/tourguide/luggage_service/", 
 
-    // --- Excess Baggage Section ---
     excessBaggageIntro: "Please check your baggage at the check-in counter or self-service baggage check-in kiosk in advance. China Southern may inspect your baggage at the check-in counter, security check counter, boarding gate and in the cabin. Baggage exceeding the free baggage allowance will be charged as per excess baggage rate.",
     
     excessCheckedBaggage: {
@@ -107,7 +103,7 @@ export const chinaSouthernInfo = {
         limitationsTable: {
             headers: ["Flight Type", "Route", "Maximum Weight per Piece", "Maximum Dimensions per Piece"],
             rows: [
-                { flightType: "Domestic Flight", route: "&nbsp;", weight: "50kg/pc", dimensions: "The length, width and height shall not exceed 40*60*100 cm" }, // Added &nbsp; for empty route cell
+                { flightType: "Domestic Flight", route: "&nbsp;", weight: "50kg/pc", dimensions: "The length, width and height shall not exceed 40*60*100 cm" }, 
                 { flightType: "International/Regional Flight", route: "United States destinations involved", weight: "45kg/pc", dimensions: "the sum of L+W+H per piece≤203 cm" },
                 { flightType: "International/Regional Flight", route: "no United States destinations involved", weight: "32kg/pc", dimensions: "the sum of L+W+H per piece≤158cm" }
             ]
@@ -123,7 +119,7 @@ export const chinaSouthernInfo = {
         domestic: {
             title: "1. Domestic Travel",
             headers: ["First Class", "Business Class", "Premium Economy Class", "Economy Class"],
-            allowances: ["40kg", "30kg", "20kg", "20kg"], // Changed from 'allowance' to 'allowances' to match rendering
+            allowances: ["40kg", "30kg", "20kg", "20kg"], 
             notes: [
                 "1. A child passenger has the same basic baggage allowance as an adult;",
                 "2. The infant not occupying a separate seat have no free baggage allowance. For each Infant you may bring a collapsible stroller free of charge;",
@@ -142,13 +138,12 @@ export const chinaSouthernInfo = {
             businessClass: {
                 title: "2.1.2 Business Class",
                 headers: ["Applicable Itinerary", "Business Full Flex", "Business Flex", "Business Standard"],
-                rows: [ // This structure is a bit different from the text, but more tabular
+                rows: [ 
                     { itinerary: "All itineraries", fullFlex: "2 pcs, 32 kg (70lb)/pc, L+W+H ≤158cm", flex: "2 pcs, 32 kg (70lb)/pc, L+W+H ≤158cm", standard: "2 pcs, 32 kg (70lb)/pc, L+W+H ≤158cm" }
                 ]
             },
             premiumEconomyClass: {
                 title: "2.1.3 Premium Economy Class",
-                // Each category has applicable itineraries and then a common allowance for Full Flex, Flex, Standard
                 categories: [
                     {
                         itineraries: [
@@ -161,7 +156,7 @@ export const chinaSouthernInfo = {
                             "⑦ Between South Korea and the Chinese mainland (excluding Hong Kong, Macao and Taiwan).",
                             "⑧ Between Singapore and the Chinese mainland (excluding Hong Kong, Macao and Taiwan)."
                         ],
-                        allowance: "2 pcs, 23 kg (50lb)/pc, the sum of L+W+H per piece≤158cm" // Applies to Full Flex, Flex, Standard for these itineraries
+                        allowance: "2 pcs, 23 kg (50lb)/pc, the sum of L+W+H per piece≤158cm" 
                     },
                     {
                         itineraries: [
@@ -174,7 +169,7 @@ export const chinaSouthernInfo = {
                             "⑦ Between Hong Kong, Macao and Taiwan;",
                             "⑧ Other itineraries not specified."
                         ],
-                        allowance: "1 pc, 32 kg (70lb)/pc, the sum of L+W+H per piece≤158cm" // Applies to Full Flex, Flex, Standard for these itineraries
+                        allowance: "1 pc, 32 kg (70lb)/pc, the sum of L+W+H per piece≤158cm" 
                     }
                 ]
             },
@@ -246,7 +241,7 @@ export const chinaSouthernInfo = {
                     "2.4.1 Labor passengers refer to passengers who work in countries other than the place of nationality. Copies of the valid passport and labor visa (except work visa) should be provided when purchasing tickets.",
                     "2.4.2 The preferential baggage allowance is only applicable to the fares for the itineraries between the country of employment and the country of nationality.",
                     "2.4.3 For a labor passenger who has already been entitled to the free checked baggage allowance as a Sky Pearl Platinum, Gold or Silver Card member of China Southern, or Elite, Elite Plus members of cooperative airlines of China Southern, will not be entitled to the extra free checked baggage allowance for labor passengers.",
-                    "2.4.4 Additional free checked baggage for international student passengers is no longer available when using the Economy Saver brand fare or Economy Light brand fare.", // Typo in source, likely meant labor passengers
+                    "2.4.4 Additional free checked baggage for international student passengers is no longer available when using the Economy Saver brand fare or Economy Light brand fare.", 
                     "2.4.5 The specific itineraries or fares are as follows:\n(1) Between the Chinese mainland (excluding Hong Kong, Macao and Taiwan) and Southeast Asia (excluding Singapore) , South Asia, Central and Western Asia (except Tajikistan);\n(2) Between Korea and South Asia, Central and Western Asia;\n(3) Between the Chinese mainland (excluding Hong Kong, Macao and Taiwan) and South Korea, with Economy Class fares."
                 ]
             },
@@ -263,7 +258,6 @@ export const chinaSouthernInfo = {
         }
     },
 
-    // Contact Details - Structured to be at the end
     contactDetails: {
         title: "Contact China Southern Airlines",
         websiteServices: {
@@ -306,7 +300,6 @@ export function displayChinaSouthernInfo(placeholderElement) {
     const info = chinaSouthernInfo;
     let html = "";
 
-    // CTA Block
     if (info.ctaTitle && info.ctaText && info.ctaButtonText && info.officialBaggagePageUrl) {
         html += `
             <div class="calculator-cta-section">
@@ -320,12 +313,10 @@ export function displayChinaSouthernInfo(placeholderElement) {
             <hr style="margin: 20px 0;">`;
     }
 
-    // Excess Baggage Intro
     if (info.excessBaggageIntro) {
         html += `<p>${info.excessBaggageIntro}</p>`;
     }
 
-    // Excess Checked Baggage
     if (info.excessCheckedBaggage) {
         html += `<h3>${info.excessCheckedBaggage.title || 'Excess Checked Baggage'}</h3>`;
         if (info.excessCheckedBaggage.domestic) {
@@ -368,7 +359,6 @@ export function displayChinaSouthernInfo(placeholderElement) {
         html += `<hr>`;
     }
 
-    // Boarding Gate Charges
     if (info.boardingGateCharges) {
         html += `<h3>${info.boardingGateCharges.title || 'Baggage Charged at Boarding Gate'}</h3>`;
         if (info.boardingGateCharges.generalRule) html += `<p>${info.boardingGateCharges.generalRule}</p>`;
@@ -395,7 +385,6 @@ export function displayChinaSouthernInfo(placeholderElement) {
         html += `<hr>`;
     }
 
-    // General Rules
     if (info.generalRules) {
         html += `<h3>${info.generalRules.title || 'General Rules'}</h3>`;
         if (info.generalRules.provisionsTitle) html += `<h4>${info.generalRules.provisionsTitle}</h4>`;
@@ -427,7 +416,6 @@ export function displayChinaSouthernInfo(placeholderElement) {
         html += `<hr>`;
     }
 
-    // Free Baggage Allowance
     if (info.freeBaggageAllowance) {
         html += `<h3>${info.freeBaggageAllowance.title || 'Free Baggage Allowance'}</h3>`;
         if (info.freeBaggageAllowance.domestic) {
@@ -462,7 +450,7 @@ export function displayChinaSouthernInfo(placeholderElement) {
                 html += `<h6>${classTitle}</h6>`;
                 categories.forEach(cat => {
                     html += `<p><strong>Applicable Itineraries:</strong></p><ul>`;
-                    cat.itineraries.forEach(it => html += `<li>${it.replace(/\[Note \d\]/g, match => `<em>${match}</em>`)}</li>`); // Italicize notes
+                    cat.itineraries.forEach(it => html += `<li>${it.replace(/\[Note \d\]/g, match => `<em>${match}</em>`)}</li>`); 
                     html += `</ul><p><strong>Allowance:</strong> ${cat.allowance}</p><br>`;
                 });
             };
@@ -501,7 +489,6 @@ export function displayChinaSouthernInfo(placeholderElement) {
         html += `<hr>`;
     }
 
-    // Contact Details Section - Rendered at the end
     if (info.contactDetails) {
         html += `<h3>${info.contactDetails.title || 'Contact China Southern'}</h3>`;
         const cd = info.contactDetails;
@@ -539,5 +526,4 @@ export function displayChinaSouthernInfo(placeholderElement) {
     
     placeholderElement.innerHTML = html;
 }
-// Alias export for compatibility with dynamic loader
 export { displayChinaSouthernInfo as displayChinasouthernInfo };

@@ -1,13 +1,9 @@
-// interline/aegean.js
-// Contains information and display logic for Aegean Airlines (A3).
 
-// Exported data object for Aegean Airlines
 export const aegeanInfo = {
     calculatorUrl: "https://en.aegeanair.com/travel-info/travelling-with-aegean/baggage/baggage-calculator/",
     calculatorText: "To check your baggage allowance and calculate costs for Aegean Airlines, please use their official baggage calculator.",
-    // General baggage notes can be added here if specific static rules are found
-    // e.g., generalBaggageNotes: ["Note 1", "Note 2"],
-    contactDetails: { // Contact details grouped at the end of the info object
+    
+    contactDetails: { 
         contactPageUrl: "https://en.aegeanair.com/contact/",
         contactIntro: "We strive to provide exceptional service in your preferred language. However, during certain times, we may not have agents available who speak your respective requested one. In these instances, we will serve you in either in English or in Greek to ensure we can assist you as efficiently as possible.",
         callCenterNote: "Our call center operates on a 24/7 basis.",
@@ -47,10 +43,9 @@ export function displayAegeanInfo(placeholderElement) {
         return;
     }
 
-    const info = aegeanInfo; // Use the local info object
+    const info = aegeanInfo; 
     let html = "";
 
-    // Main Call to Action for Baggage Calculator
     html += `
         <div class="calculator-cta-section">
             <span class="calculator-cta-icon">✈️</span>
@@ -63,14 +58,12 @@ export function displayAegeanInfo(placeholderElement) {
         <hr style="margin: 20px 0;">
     `;
 
-    // Placeholder for any general baggage rules if you add them to aegeanInfo.generalBaggageNotes
     if (info.generalBaggageNotes && info.generalBaggageNotes.length > 0) {
         html += `<h4>General Baggage Notes:</h4><ul>`;
         info.generalBaggageNotes.forEach(note => html += `<li>${note}</li>`);
         html += `</ul><hr style="margin: 20px 0;">`;
     }
 
-    // Contact Information Section - Placed at the end
     if (info.contactDetails) {
         html += `<h4>Contact Aegean Airlines:</h4>`;
         if (info.contactDetails.contactIntro) html += `<p>${info.contactDetails.contactIntro}</p>`;

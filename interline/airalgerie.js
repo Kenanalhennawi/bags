@@ -1,7 +1,4 @@
-// interline/airalgerie.js
-// Contains information, tariff data, and display logic for Air Algérie (AH).
 
-// Exported data object for Air Algérie tariffs
 export const airAlgerieTariffs = {
     france: {
         displayName: "France",
@@ -209,11 +206,9 @@ export const airAlgerieTariffs = {
             { luggage: "3rd piece and more", itinerary: "Connecting to/from Africa", lessThan24h: "250 EUR", atLeast24hOrAirport: "250 EUR" }
         ]
     }
-    // Add other general info or contact details for Air Algerie if available
-    // contactDetails: { ... } // To be rendered at the end by displayAirAlgerieInfo
+    
 };
 
-// This flag ensures the region dropdown event listener is added only once.
 let airAlgerieInitialized = false;
 
 /**
@@ -222,11 +217,9 @@ let airAlgerieInitialized = false;
  */
 function populateAirAlgerieRegions(regionSelectorElement) {
     if (!regionSelectorElement) return;
-    // Clear existing options except the first one (-- Choose a Region --)
     while (regionSelectorElement.options.length > 1) {
         regionSelectorElement.remove(1);
     }
-    // Populate with new regions from the tariff data
     for (const key in airAlgerieTariffs) {
         const option = document.createElement('option');
         option.value = key;
@@ -287,22 +280,18 @@ export function initializeAirAlgerie(regionSelectorElement, tariffTableContainer
         return;
     }
 
-    // Initial message in the main placeholder
     placeholderElement.innerHTML = `
         <p>Select a region/route to view Air Algérie's additional piece tariffs. Please verify with the airline for the most current information.</p>
         <p class="small-note">General rules for overweight (23-32kg and >32kg) and oversized (158-203cm with 12000 DZD / 80 EUR fee if applicable) baggage also apply. Consult Air Algérie for full details.</p>
     `;
-    // TODO: Add contact details for Air Algerie at the end of the placeholderElement.innerHTML if available in airAlgerieTariffs or a new object.
 
 
     populateAirAlgerieRegions(regionSelectorElement); 
     
-    // Display initial message in table container
     if (tariffTableContainerElement && regionSelectorElement.value === "") {
         tariffTableContainerElement.innerHTML = "<p>Please select a region to see the tariffs.</p>";
     }
 
-    // Add event listener only once
     if (!airAlgerieInitialized) {
         regionSelectorElement.addEventListener('change', function() {
             if (this.value) {

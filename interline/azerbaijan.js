@@ -1,5 +1,4 @@
-// interline/azerbaijan.js
-// Contains information and display logic for Azerbaijan Airlines (AZAL) (J2).
+
 /**
  * Validates the Azerbaijan Airlines info object structure
  * @param {Object} info - The info object to validate
@@ -12,13 +11,11 @@ function validateAzerbaijanInfo(info) {
 }
 export const azerbaijanAirlinesInfo = {
     name: "Azerbaijan Airlines (AZAL)",
-    // --- CTA Block Data ---
     ctaTitle: "Azerbaijan Airlines (AZAL) Baggage Information",
     ctaText: "For the most current details on baggage allowances, fees, and specific conditions for your AZAL flight, please visit their official website or use their booking management tools.",
     ctaButtonText: "VISIT OFFICIAL AZAL SITE",
     officialSiteUrl: "https://www.azal.az/en/", 
 
-    // --- Other Relevant URLs ---
     manageBookingUrl: "https://www.azal.az/en/#booking",
     onlineCheckInUrl: "https://www.azal.az/en/#checkin",
     callCenterNumber: "+994 (12) 598 88 80", 
@@ -136,18 +133,15 @@ export const azerbaijanAirlinesInfo = {
  * @param {HTMLElement} placeholderElement - The DOM element to inject HTML into.
  */
 export function displayAzerbaijanAirlinesInfo(placeholderElement) {
-    // Input validation
     if (!placeholderElement || !(placeholderElement instanceof HTMLElement)) {
         console.error("Invalid placeholder element provided for Azerbaijan Airlines info display");
         return;
     }
 
-    // Show loading state
     placeholderElement.innerHTML = '<div class="loading-spinner" role="status" aria-label="Loading Azerbaijan Airlines information">Loading...</div>';
 
     const info = azerbaijanAirlinesInfo;
 
-    // Validate info object
     if (!validateAzerbaijanInfo(info)) {
         placeholderElement.innerHTML = `
             <div class="error-message" role="alert">
@@ -159,7 +153,6 @@ export function displayAzerbaijanAirlinesInfo(placeholderElement) {
 
     let html = '<div class="azerbaijan-airlines-info" role="region" aria-label="Azerbaijan Airlines Baggage Information">';
 
-    // CTA Block
     if (info.ctaTitle && info.ctaText && info.ctaButtonText && info.officialSiteUrl) {
         html += `
             <section class="calculator-cta-section" aria-labelledby="cta-title">
@@ -179,7 +172,6 @@ export function displayAzerbaijanAirlinesInfo(placeholderElement) {
             <hr aria-hidden="true">`;
     }
 
-    // Hand Luggage Section
     if (info.handLuggage) {
         html += `
             <section class="hand-luggage-section" aria-labelledby="hand-luggage-title">
@@ -205,7 +197,6 @@ export function displayAzerbaijanAirlinesInfo(placeholderElement) {
         html += `</div></section><hr aria-hidden="true">`;
     }
 
-    // Checked Baggage Fees Section
     if (info.checkedBaggageFees?.categories?.length > 0) {
         html += `
             <section class="checked-baggage-section" aria-labelledby="checked-baggage-title">
@@ -247,7 +238,6 @@ export function displayAzerbaijanAirlinesInfo(placeholderElement) {
         html += `</section><hr aria-hidden="true">`;
     }
 
-    // Additional Information Section
     if (info.additionalInfoSection) {
         html += `
             <section class="additional-info-section" aria-labelledby="additional-info-title">
@@ -289,7 +279,6 @@ export function displayAzerbaijanAirlinesInfo(placeholderElement) {
         html += `</section><hr aria-hidden="true">`;
     }
 
-    // Purchase Methods Section
     if (info.purchaseMethods?.methods?.length > 0) {
         html += `
             <section class="purchase-methods-section" aria-labelledby="purchase-methods-title">
@@ -339,7 +328,6 @@ export function displayAzerbaijanAirlinesInfo(placeholderElement) {
         html += `</ul></section>`;
     }
 
-    // Contact Details Section
     if (info.contactDetails?.mainContactPromptTemplate) {
         const callCenterLinkHtml = info.callCenterNumber 
             ? `<a href="tel:${info.callCenterNumber.replace(/\s|\(|\)/g, '')}" aria-label="Call Azerbaijan Airlines at ${info.callCenterNumber}">${info.callCenterNumber}</a>`
@@ -365,5 +353,4 @@ export function displayAzerbaijanAirlinesInfo(placeholderElement) {
     placeholderElement.innerHTML = html;
 }
 
-// Alias export for compatibility with dynamic loader
 export { displayAzerbaijanAirlinesInfo as displayAzerbaijanInfo };

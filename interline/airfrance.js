@@ -1,13 +1,8 @@
-// interline/airfrance.js
-// Contains information and display logic for Air France (AF).
 
-// Exported data object for Air France
 export const airFranceInfo = {
-    // CTA Block specific properties
     ctaTitle: "View Air France (AF) Baggage Details",
     ctaText: "To check your baggage allowance, calculate baggage fees, and review specific conditions for your trip, please use the official Air France baggage resources.",
     ctaButtonText: "VISIT AIR FRANCE BAGGAGE PAGE",
-    // Note: ctaButtonUrl will use baggagePageUrl
 
     baggagePageUrl: "https://wwws.airfrance.ae/information/bagages",
     myBookingsUrl: "https://wwws.airfrance.fr/en/trip?_gl=1*d10n0t*_ga*MDVhNGE3YzUtYTAzYy00Zjk2LWE3OTctOTYxMWFmNTExMjVh*_ga_X329ZV2JZ5*czE3NDkwNTE2MTAkbzEkZzEkdDE3NDkwNTE4NzgkajE0JGwwJGgw",
@@ -132,7 +127,6 @@ export function displayAirFranceInfo(placeholderElement) {
     const info = airFranceInfo;
     let html = "";
 
-    // CTA Block - Placed at the beginning
     if (info.ctaTitle && info.ctaText && info.ctaButtonText && info.baggagePageUrl) {
         html += `
             <div class="calculator-cta-section">
@@ -146,7 +140,6 @@ export function displayAirFranceInfo(placeholderElement) {
             <hr style="margin: 20px 0;">
         `;
     } else {
-        // Fallback introductory section if CTA details are missing
         html += `
             <div class="info-section">
                 <p>For personalized Air France baggage details and the most up-to-date information, please
@@ -158,14 +151,12 @@ export function displayAirFranceInfo(placeholderElement) {
     }
     
 
-    // When Air France Rules Apply
     if (info.applicationRules && info.applicationRules.length > 0) {
         html += `<h4>When Air France Baggage Rules Apply:</h4><ul>`;
         info.applicationRules.forEach(rule => html += `<li>${rule}</li>`);
         html += `</ul><hr>`;
     }
 
-    // Checked Baggage Section
     if (info.checkedBaggage) {
         html += `<h3>Checked Baggage</h3>`;
         if (info.checkedBaggage.general && info.checkedBaggage.general.length > 0) {
@@ -225,7 +216,6 @@ export function displayAirFranceInfo(placeholderElement) {
         html += `<hr>`;
     }
     
-    // Cabin Baggage Section
     if (info.cabinBaggage) {
         html += `<h3>Cabin Baggage</h3>`;
         if (info.cabinBaggage.general && info.cabinBaggage.general.length > 0) {
@@ -265,12 +255,10 @@ export function displayAirFranceInfo(placeholderElement) {
             info.cabinBaggage.liquids.forEach(item => html += `<li>${item}</li>`);
             html += `</ul><p class="small-note">For exceptions (baby food, medication), see the <a href="${info.prohibitedGoodsUrl}" target="_blank" rel="noopener noreferrer">Prohibited and Regulated Goods page</a>.</p>`;
         }
-        // No final <hr> here if contacts are next and will have their own <hr>
     }
     
-    // Contact Information Section - Rendered at the end
     if (info.contactDetails) {
-        html += `<hr style="margin: 20px 0;">`; // Separator before contact info
+        html += `<hr style="margin: 20px 0;">`; 
         const cd = info.contactDetails;
         html += `<h3>Customer Support</h3>`;
         html += `<p>For further assistance, you can contact Air France:</p>`;
@@ -299,7 +287,7 @@ export function displayAirFranceInfo(placeholderElement) {
             });
             html += `</ul>`;
         }
-        if (cd.contactNote) { // Ensure there's a separator if other contact info was present
+        if (cd.contactNote) { 
             if(cd.customerSupport) html += `<hr style="margin: 15px 0;">`;
             html += `<p>${cd.contactNote}</p>`;
         }

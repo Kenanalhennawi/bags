@@ -1,15 +1,8 @@
-// interline/emirates.js
-// --- FINAL & COMPLETE VERSION ---
-// Contains all information for Emirates (EK), including free allowance, excess fees, and contact details.
 
-// ##################################################################
-// # START OF LARGE DATA OBJECT: emiratesInfo                     #
-// ##################################################################
 export const emiratesInfo = {
     baggagePageUrl: "https://www.emirates.com/us/english/before-you-fly/baggage/checked-baggage/",
     manageBookingUrl: "https://www.emirates.com/us/english/manage-booking/",
 
-    // --- SECTION 1: Free Baggage Allowance ---
     weightConcept: {
         title: "Weight Concept - Free Allowance",
         description: "Applies to all routes, except when you travel to and from the Americas and Africa. You can check in as many bags as you like up to the total weight allowance for your travel class. Each individual bag must not weigh more than 32kg.",
@@ -52,7 +45,6 @@ export const emiratesInfo = {
         ]
     },
     
-    // --- SECTION 2: Excess Baggage Fees (All new details are here) ---
     excessBaggage: {
         title: "Excess Baggage Fees",
         weightConcept: {
@@ -108,7 +100,6 @@ export const emiratesInfo = {
         }
     },
 
-    // --- SECTION 3: Special Categories & Contact Info ---
     specialCategories: [
         { title: "Passengers with Disabilities", details: [ "May check a fully collapsible wheelchair.", "May check braces or crutches.", "Passengers dependent on a portable dialysis machine are entitled to check one machine and its associated equipment free of charge." ] },
         { title: "Passengers with Infants (under 2)", details: [ "Allowed one cabin bag (up to 5 kg) and one checked bag (up to 10 kg) on Weight Concept routes.", "Allowed one cabin bag (up to 5 kg) on Piece Concept routes.", "One fully collapsible stroller, infant's carrycot, or infant's car seat may be carried free of charge if space is available." ] },
@@ -122,14 +113,7 @@ export const emiratesInfo = {
         ]
     }
 };
-// ##################################################################
-// # END OF DATA OBJECT                                             #
-// ##################################################################
 
-
-// ##################################################################
-// # START OF DISPLAY FUNCTION                                      #
-// ##################################################################
 /**
  * Displays Emirates baggage information in the provided placeholder element.
  * @param {HTMLElement} placeholderElement - The DOM element where the HTML should be injected.
@@ -143,7 +127,6 @@ export function displayEmiratesInfo(placeholderElement) {
     const info = emiratesInfo;
     let html = "";
 
-    // CTA Section
     html += `
         <div class="calculator-cta-section">
             <span class="calculator-cta-icon">✈️</span>
@@ -156,9 +139,7 @@ export function displayEmiratesInfo(placeholderElement) {
         <hr style="margin: 20px 0;">
     `;
 
-    // Free Allowance Section
     html += `<h3>Free Baggage Allowance</h3>`;
-    // Weight Concept - Free
     const wc = info.weightConcept;
     html += `<h4>${wc.title}</h4><p>${wc.description}</p><p class="small-note"><strong>Dimensions:</strong> ${wc.maxDimensions}</p>`;
     html += `<table class="rules-table"><thead><tr><th>Class</th><th>Special</th><th>Saver</th><th>Flex</th><th>Flex Plus</th></tr></thead><tbody>`;
@@ -169,7 +150,6 @@ export function displayEmiratesInfo(placeholderElement) {
     html += `</tbody></table>`;
     if(wc.notes) wc.notes.forEach(note => html += `<p class="small-note">${note}</p>`);
 
-    // Piece Concept - Free
     const pc = info.pieceConcept;
     html += `<hr style="margin: 20px 0;"><h4>${pc.title}</h4><p>${pc.description}</p><p class="small-note"><strong>Dimensions:</strong> ${pc.maxDimensions}</p>`;
     pc.routes.forEach(route => {
@@ -179,10 +159,8 @@ export function displayEmiratesInfo(placeholderElement) {
         html += `</tbody></table>`;
     });
     
-    // Excess Baggage Fees Section
     if(info.excessBaggage) {
         html += `<hr style="margin: 25px 0; border-color: #FF7A00;"><h3>${info.excessBaggage.title}</h3>`;
-        // Excess - Weight
         const exWc = info.excessBaggage.weightConcept;
         html += `<h4>${exWc.title}</h4>`;
         exWc.notes.forEach(note => html += `<p>${note}</p>`);
@@ -193,7 +171,6 @@ export function displayEmiratesInfo(placeholderElement) {
         html += `<h5>Regional Classifications</h5>`;
         exWc.regionalClassification.forEach(r => html += `<p class="small-note"><strong>${r.region}:</strong> ${r.countries}</p>`);
 
-        // Excess - Piece
         const exPc = info.excessBaggage.pieceConcept;
         html += `<hr><h4>${exPc.title}</h4>`;
         exPc.notes.forEach(note => html += `<p>${note}</p>`);
@@ -209,7 +186,6 @@ export function displayEmiratesInfo(placeholderElement) {
              html += `</tbody></table>`;
         });
         
-        // Historical rates for Piece Concept
         if(exPc.historicalRates) {
             html += `<hr><h5>${exPc.historicalRates.title}</h5><p class="small-note">${exPc.historicalRates.note}</p>`;
             exPc.historicalRates.overweightOversizeFees.forEach(tableInfo => {
@@ -221,7 +197,6 @@ export function displayEmiratesInfo(placeholderElement) {
         }
     }
 
-    // Special Categories
     if(info.specialCategories) {
         html += `<hr style="margin: 25px 0; border-color: #FF7A00;"><h3>Special Baggage & Other Items</h3>`;
         info.specialCategories.forEach(category => {
@@ -231,7 +206,6 @@ export function displayEmiratesInfo(placeholderElement) {
         });
     }
 
-    // Contact Information
     if(info.contactDetails && info.contactDetails.departments) {
         html += `<hr style="margin: 20px 0;"><h3>Contact Information</h3>`;
         info.contactDetails.departments.forEach(dept => {

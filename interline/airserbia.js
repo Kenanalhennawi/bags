@@ -1,5 +1,3 @@
-// interline/airserbia.js
-// Contains information and display logic for Air Serbia (JU).
 
 export const airSerbiaInfo = {
     name: "Air Serbia (JU)",
@@ -168,7 +166,6 @@ export function displayAirSerbiaInfo(placeholderElement) {
 
     const info = airSerbiaInfo;
 
-    // Card (top section)
     let html = `
     <div class="airline-info-card">
         <div class="airline-card-title">Air Serbia (JU)</div>
@@ -313,5 +310,4 @@ export function displayAirSerbiaInfo(placeholderElement) {
     placeholderElement.innerHTML = html;
 }
 
-// Alias export for compatibility with dynamic loader
 export { displayAirSerbiaInfo as displayAirserbiaInfo };

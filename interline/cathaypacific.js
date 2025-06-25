@@ -1,19 +1,14 @@
-// interline/cathaypacific.js
-// Module for Cathay Pacific Airlines (CX).
 
 export const cathayPacificInfo = {
     name: "Cathay Pacific Airlines (CX)",
-    // --- CTA Block Data ---
     ctaTitle: "Cathay Pacific Baggage Calculator & Information",
     ctaText: "Your baggage allowance is listed on your e-ticket receipt and in Manage Booking. You can also use the calculator below or refer to their detailed baggage pages.",
     ctaButtonText: "USE BAGGAGE CALCULATOR",
-    officialBaggagePageUrl: "https://flights.cathaypacific.com/en_US/baggage/baggage-calculator.html", // Main calculator page
+    officialBaggagePageUrl: "https://flights.cathaypacific.com/en_US/baggage/baggage-calculator.html", 
 
-    // --- Additional Links ---
     manageBookingUrl: "https://flights.cathaypacific.com/content/cx/en_US/manage-booking.html",
     carrierRulesUrl: "https://flights.cathaypacific.com/content/cx/en_US/baggage/check-in-baggage/carrier-rules.html",
 
-    // --- General Baggage Notes ---
     generalBaggageNotes: [
         "If you have upgraded to a higher cabin using Upgrade Bid, your baggage allowance is still based on your original ticket allowance.",
         "If your ticket involves flights marketed or operated by other airlines, the cabin or check-in baggage allowance may differ.",
@@ -21,14 +16,13 @@ export const cathayPacificInfo = {
         "For check-in baggage on itineraries with other airlines – please refer to Cathay Pacific's carrier rules for more details."
     ],
 
-    // --- Contact Details - to be rendered at the end ---
     contactDetails: {
         contactIntro: "If you can't find the answer you're looking for, Cathay Pacific is here to help. Support is available through chat and on their website.",
         whatsApp: {
             link: "https://wa.me/85227472747",
             text: "Chat with us now via WhatsApp"
         },
-        uaeContacts: { // Specific to UAE as per provided text
+        uaeContacts: { 
             title: "Contact Information (UAE)",
             generalEnquiries: "+971 800 049 866",
             travelAgencies: "+971 800 049 867",
@@ -40,7 +34,6 @@ export const cathayPacificInfo = {
             email: "DXB8BAG@cathaypacific.com"
         },
         globalContactPrompt: "For other countries/regions, please select your location on the official Cathay Pacific contact page to see relevant information."
-        // officialContactPageUrl: "https://www.cathaypacific.com/cx/en_US/contact-us.html" // General contact page if needed
     }
 };
 
@@ -48,9 +41,9 @@ export const cathayPacificInfo = {
  * Displays Cathay Pacific Airlines baggage information.
  * @param {HTMLElement} placeholderElement - The DOM element to inject HTML into.
  */
-export function displayCathaypacificInfo(placeholderElement) { // Renamed to match expected call
+export function displayCathaypacificInfo(placeholderElement) { 
     if (!placeholderElement) {
-        console.error("Cathay Pacific placeholder not found for displaying info."); // Corrected airline name in log
+        console.error("Cathay Pacific placeholder not found for displaying info."); 
         placeholderElement.innerHTML = "<p>Error: Placeholder element not found for Cathay Pacific.</p>";
         return;
     }
@@ -58,7 +51,6 @@ export function displayCathaypacificInfo(placeholderElement) { // Renamed to mat
     const info = cathayPacificInfo;
     let html = "";
 
-    // CTA Block
     if (info.ctaTitle && info.ctaText && info.ctaButtonText && info.officialBaggagePageUrl) {
         html += `
             <div class="calculator-cta-section">
@@ -79,11 +71,9 @@ export function displayCathaypacificInfo(placeholderElement) { // Renamed to mat
         html += `<hr style="margin: 20px 0;">`;
     }
 
-    // General Baggage Notes
     if (info.generalBaggageNotes && info.generalBaggageNotes.length > 0) {
         html += `<h4>Important Notes:</h4><ul>`;
         info.generalBaggageNotes.forEach(note => {
-            // Make "Manage Booking" and "carrier rules" clickable if present in notes
             let processedNote = note.replace("Manage Booking", `<a href="${info.manageBookingUrl}" target="_blank" rel="noopener noreferrer">Manage Booking</a>`);
             processedNote = processedNote.replace("carrier rules", `<a href="${info.carrierRulesUrl}" target="_blank" rel="noopener noreferrer">carrier rules</a>`);
             html += `<li>${processedNote}</li>`;
@@ -93,7 +83,6 @@ export function displayCathaypacificInfo(placeholderElement) { // Renamed to mat
         html += `<p><em>Detailed baggage rules for ${info.name} are best found on their official website using the link above.</em></p><hr style="margin: 20px 0;">`;
     }
 
-    // Contact Details Section
     html += `<h4>Contact ${info.name}</h4>`;
     if (info.contactDetails) {
         const cd = info.contactDetails;
@@ -131,10 +120,7 @@ export function displayCathaypacificInfo(placeholderElement) { // Renamed to mat
         if (cd.globalContactPrompt) {
             html += `<p>${cd.globalContactPrompt}</p>`;
         }
-        // Example for a general contact page link, if you add it to contactDetails object
-        // if (cd.officialContactPageUrl) {
-        //     html += `<p>For more options, visit the <a href="${cd.officialContactPageUrl}" target="_blank" rel="noopener noreferrer">official contact page</a>.</p>`;
-        // }
+      
 
     } else {
         html += `<p>For support, please refer to the official ${info.name} website.</p>`;

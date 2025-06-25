@@ -1,5 +1,3 @@
-// interline/batikAir.js
-// Contains information and display logic for Batik Air Malaysia (OD).
 
 export const batikAirInfo = {
     officialBaggagePageUrl: "https://www.batikair.com.my/experience/baggage", 
@@ -388,7 +386,6 @@ export function displayBatikAirInfo(placeholderElement) {
 
     const info = batikAirInfo;
     
-    // Start with the plane card wrapper
     let html = `
 <div class="airline-info-card">
     <div class="airline-card-title">Batik Air Malaysia (OD)</div>
@@ -413,7 +410,6 @@ export function displayBatikAirInfo(placeholderElement) {
 </div>
 `;
 
-    // Cabin Baggage
     if (info.cabinBaggage) {
         html += `<h3>Cabin Baggage</h3>`;
         if(info.cabinBaggage.intro) html += `<p>${info.cabinBaggage.intro}</p>`;
@@ -434,7 +430,6 @@ export function displayBatikAirInfo(placeholderElement) {
         html += `</ul><hr>`;
     }
 
-    // Free Checked Baggage Allowance
     if (info.freeCheckedBaggage) {
         html += `<h3>${info.freeCheckedBaggage.title || 'Free Checked Baggage Allowance'}</h3>`;
         info.freeCheckedBaggage.categories.forEach(cat => {
@@ -480,7 +475,6 @@ export function displayBatikAirInfo(placeholderElement) {
         html += `<hr>`;
     }
 
-    // Additional Baggage Purchase
     if (info.additionalBaggagePurchase) {
         html += `<h3>Purchasing Additional Baggage</h3>`;
         if (info.additionalBaggagePurchase.intro) html += `<p>${info.additionalBaggagePurchase.intro}</p>`;
@@ -494,7 +488,6 @@ export function displayBatikAirInfo(placeholderElement) {
         html += `<p class="small-note">Please refer to the Batik Air website for detailed pre-paid baggage rate tables for Initial and Post Flight Bookings, as these are extensive and subject to change.</p><hr>`;
     }
     
-    // Function to render a generic fee table
     const renderFeeTable = (title, currency, headers, rates, dataKeys) => {
         let tableHtml = `<h4>${title} (Currency: ${currency})</h4>`;
         tableHtml += `<table class="rules-table"><thead><tr>`;
@@ -509,7 +502,6 @@ export function displayBatikAirInfo(placeholderElement) {
         return tableHtml;
     };
 
-    // Pre-paid Baggage Rate for Initial Flight Booking
     if (info.prepaidBaggageInitialBooking && info.prepaidBaggageInitialBooking.sections) {
         html += `<h3>${info.prepaidBaggageInitialBooking.title || 'Pre-paid Baggage Rate for Initial Flight Booking'}</h3>`;
         info.prepaidBaggageInitialBooking.sections.forEach(section => {
@@ -518,7 +510,6 @@ export function displayBatikAirInfo(placeholderElement) {
         });
     }
 
-    // Pre-paid Baggage Rate for Post Flight Booking
     if (info.prepaidBaggagePostBooking && info.prepaidBaggagePostBooking.sections) {
         html += `<h3>${info.prepaidBaggagePostBooking.title || 'Pre-paid Baggage Rate for Post Flight Booking'}</h3>`;
         info.prepaidBaggagePostBooking.sections.forEach(section => {
@@ -536,7 +527,6 @@ export function displayBatikAirInfo(placeholderElement) {
     }
      html += `<hr>`;
 
-    // Excess Baggage Rates at Airport
     if (info.excessBaggageRatesAirport && info.excessBaggageRatesAirport.rates) {
         html += `<h3>${info.excessBaggageRatesAirport.title || 'Excess Baggage Rates (Airport)'}</h3>`;
         html += `<table class="rules-table"><thead><tr>`;
@@ -548,7 +538,6 @@ export function displayBatikAirInfo(placeholderElement) {
         html += `</tbody></table><hr>`;
     }
 
-    // Limited Release Tag
     if (info.limitedReleaseTag) {
         html += `<h3>Limited Release Tag (LRT)</h3>`;
         if (info.limitedReleaseTag.description) html += `<p>${info.limitedReleaseTag.description}</p>`;
@@ -560,7 +549,6 @@ export function displayBatikAirInfo(placeholderElement) {
         html += `<hr>`;
     }
 
-    // Other Policies (High Value, Lithium, Sports, Strollers etc.)
     if (info.highValueBaggage) html += `<h3>High Value Baggage</h3><p>${info.highValueBaggage}</p><hr>`;
     
     if (info.lithiumBatteries) {
@@ -700,7 +688,6 @@ export function displayBatikAirInfo(placeholderElement) {
         info.packingTravelTips.forEach(tip => html += `<li>${tip.replace(/\n/g, "<br>")}</li>`);
         html += `</ul><hr>`;
     }
-// Contact Section - Minimal Style with White Text
 html += `<div style="margin-top: 40px; font-family: Arial, sans-serif; color: #ffffff; background-color: #333333; padding: 20px; border-radius: 5px;">
             <h2 style="font-size: 1.5em; border-bottom: 2px solid #ffffff; padding-bottom: 5px; margin-bottom: 20px;">Contact Batik Air</h2>
             
@@ -773,6 +760,5 @@ html += `<div style="margin-top: 40px; font-family: Arial, sans-serif; color: #f
 }
 
 
-// Alias export for dynamic loader compatibility
 export { displayBatikAirInfo as displayBatikairInfo };
 

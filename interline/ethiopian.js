@@ -1,7 +1,4 @@
-// interline/ethiopian.js
-// Contains information and display logic for Ethiopian Airlines (ET).
 
-// Exported data object for Ethiopian Airlines
 export const ethiopianInfo = {
     baggageCalculatorUrl: "https://www.ethiopianairlines.com/information/baggage-information/baggage-calculator",
     contactPageUrl: "https://www.ethiopianairlines.com/services/help-and-contact/global-customer-interaction-centre-numbers",
@@ -27,7 +24,6 @@ export function displayEthiopianInfo(placeholderElement) {
     const info = ethiopianInfo;
     let html = "";
 
-    // CTA Section for Baggage Calculator
     html += `
         <div class="calculator-cta-section">
             <span class="calculator-cta-icon">✈️</span>
@@ -40,7 +36,6 @@ export function displayEthiopianInfo(placeholderElement) {
         <hr style="margin: 20px 0;">
     `;
 
-    // General Information Section
     if (info.generalNotes && info.generalNotes.length > 0) {
         html += `<h4>General Information</h4>`;
         html += `<ul>`;
@@ -50,7 +45,6 @@ export function displayEthiopianInfo(placeholderElement) {
         html += `</ul>`;
     }
 
-    // Contact Information Section
     if (info.contactPageUrl) {
          html += `<hr style="margin: 20px 0;"><h4>Contact Information</h4>`;
          html += `<p>For a list of worldwide contact numbers, please visit the official Ethiopian Airlines contact page.</p>`;

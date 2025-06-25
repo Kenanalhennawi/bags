@@ -1,7 +1,4 @@
-// interline/airastana.js
-// Contains information and display logic for Air Astana (KC).
 
-// Exported data object for Air Astana
 export const airAstanaInfo = {
     calculatorUrl: "https://airastana.com/kaz-en/information/additional-baggage",
     calculatorText: "You can check the fees, as well as the permissible maximum weight and dimensions for excess baggage, depending on your point of departure and destination using the official Air Astana calculator.",
@@ -17,7 +14,7 @@ export const airAstanaInfo = {
         "Oversized (>158cm) from Dubai: OOG counter check-in, AED 45 DNATA fee (not for pets).",
         "Codeshare/multi-carrier: operating/dominant carrier rules apply for additional baggage."
     ],
-    contactDetails: { // Contact details grouped at the end
+    contactDetails: { 
         intro: "For any inquiries related to booking, rebooking, ticket modifications, or flight schedule clarifications, please contact the phone numbers provided below.",
         callCenter: {
             title: "Call Centre (24 hours a day, 7 days a week)",
@@ -29,7 +26,7 @@ export const airAstanaInfo = {
         whatsapp: {
             title: "WhatsApp (Send us a direct message)",
             number: "+7 702 702 00 74",
-            link: "https://wa.me/77027020074" // Assuming standard WhatsApp link format
+            link: "https://wa.me/77027020074" 
         },
         hotline: {
             title: "Hotline (In case of flight delays or cancellations)",
@@ -52,7 +49,7 @@ export function displayAirAstanaInfo(placeholderElement) {
     const info = airAstanaInfo;
     let html = "";
 
-    // CTA Section for Baggage Calculator
+    
     html += `
         <div class="calculator-cta-section">
             <span class="calculator-cta-icon">✈️</span>
@@ -65,14 +62,12 @@ export function displayAirAstanaInfo(placeholderElement) {
         <hr style="margin: 20px 0;">
     `;
 
-    // General Notes
     if (info.generalNotes && info.generalNotes.length > 0) {
         html += `<h4>General Notes for Air Astana:</h4><ul>`;
         info.generalNotes.forEach(note => html += `<li>${note}</li>`);
         html += `</ul>`;
     }
     
-    // Contact Information Section - Placed at the end
     if (info.contactDetails) {
         html += `<hr style="margin: 20px 0;"><h4>Contact Air Astana:</h4>`;
         if (info.contactDetails.intro) {

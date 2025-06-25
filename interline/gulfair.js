@@ -1,7 +1,4 @@
-// interline/gulfair.js
-// Contains information and display logic for Gulf Air (GF).
 
-// Exported data object for Gulf Air
 export const gulfairInfo = {
     baggageInfoUrl: "https://www.gulfair.com/en/help/baggage/baggage-information",
     contactPageUrl: "https://www.gulfair.com/en/contact-us",
@@ -77,7 +74,6 @@ export function displayGulfairInfo(placeholderElement) {
     const info = gulfairInfo;
     let html = "";
 
-    // CTA Section for Baggage Page
     html += `
         <div class="calculator-cta-section">
             <span class="calculator-cta-icon">✈️</span>
@@ -90,14 +86,12 @@ export function displayGulfairInfo(placeholderElement) {
         <hr style="margin: 20px 0;">
     `;
 
-    // General Rules
     if (info.generalRules) {
         html += `<h4>${info.generalRules.title}</h4><ul>`;
         info.generalRules.notes.forEach(note => html += `<li>${note}</li>`);
         html += `</ul>`;
     }
 
-    // Special Allowances
     if (info.specialAllowances) {
         html += `<hr style="margin: 20px 0;"><h4>${info.specialAllowances.title}</h4>`;
         info.specialAllowances.types.forEach(type => {
@@ -107,7 +101,6 @@ export function displayGulfairInfo(placeholderElement) {
         });
     }
     
-    // Excess Baggage
     if (info.excessBaggage) {
         html += `<hr style="margin: 20px 0;"><h4>${info.excessBaggage.title}</h4>`;
         html += `<h5>Baggage Zones</h5>`;
@@ -119,7 +112,6 @@ export function displayGulfairInfo(placeholderElement) {
         html += `</ul>`;
     }
 
-    // Contact Information
     if (info.contactPageUrl) {
          html += `<hr style="margin: 20px 0;"><h4>Contact Gulf Air</h4>`;
          html += `<p>For booking assistance or information, please visit the official Gulf Air contact page to find your local office or call the Worldwide Call Center.</p>`;

@@ -1,15 +1,9 @@
-// interline/croatia.js
-// --- COMPLETE VERSION WITH BOTH DATA SOURCES ---
-// Contains an interactive selector to switch between the two fee schedules.
 
-// Exported data object for Croatia Airlines, containing multiple data versions
 export const croatiaInfo = {
     baggagePageUrl: "https://www.croatiaairlines.com/Travel-info/Baggage/Checked-baggage",
     contactPageUrl: "https://www.croatiaairlines.com/contact",
-    // An array to hold the two different versions of the fee data
     dataVersions: [
         {
-            // THIS IS THE DATA THAT WAS MISSING FROM THE CODE YOU POSTED
             versionTitle: "Fee Schedule 2 (EU/Domestic)",
             fareFamilies: [
                 {
@@ -39,7 +33,6 @@ export const croatiaInfo = {
             ]
         },
         {
-            // THIS IS THE DATA THAT WAS IN THE CODE YOU POSTED
             versionTitle: "Fee Schedule 1 (with VAT %)",
             fareFamilies: [
                 {
@@ -125,7 +118,6 @@ export function displayCroatiaInfo(placeholderElement) {
     const info = croatiaInfo;
     let html = "";
 
-    // CTA Section
     html += `
         <div class="calculator-cta-section">
             <span class="calculator-cta-icon">✈️</span>
@@ -138,7 +130,6 @@ export function displayCroatiaInfo(placeholderElement) {
         <hr style="margin: 20px 0;">
     `;
 
-    // Fee Schedule Selector UI
     html += `
         <div class="form-group">
             <label for="fee-version-selector">Select Fee Schedule to View:</label>
@@ -149,10 +140,8 @@ export function displayCroatiaInfo(placeholderElement) {
         </div>
     `;
 
-    // Placeholder for the dynamic fee tables
     html += `<div id="croatia-fee-tables"></div>`;
     
-    // Contact Information Section (static at the bottom)
      if (info.contactDetails && info.contactDetails.departments) {
         html += `<hr style="margin: 25px 0; border-color: #FF7A00;"><h3>Contact Croatia Airlines</h3>`;
         info.contactDetails.departments.forEach(dept => {
@@ -167,22 +156,17 @@ export function displayCroatiaInfo(placeholderElement) {
         });
     }
 
-    // Inject the static HTML structure
     placeholderElement.innerHTML = html;
 
-    // --- Add Event Listeners to make it interactive ---
     const selector = placeholderElement.querySelector('#fee-version-selector');
     const tablesContainer = placeholderElement.querySelector('#croatia-fee-tables');
 
-    // Function to update tables based on selection
     function updateTables() {
         const selectedIndex = selector.value;
         tablesContainer.innerHTML = renderFeeTables(info.dataVersions[selectedIndex]);
     }
 
-    // Add the event listener
     selector.addEventListener('change', updateTables);
 
-    // Initial render of the default (first) version's tables
     updateTables();
 }
