@@ -11,13 +11,12 @@
     <div class="container">
       <h1>Airline Baggage Calculator</h1>
 
-      <!-- Top-level selection for Flydubai or Interline Partners -->
       <div class="top-level-airline-selection">
         <h2>Select Airline Option</h2>
         <div class="radio-group-container top-level-radio-group">
           <div class="radio-item">
             <input type="radio" id="selectFlydubai" name="airlineOption" value="flydubai" checked>
-            <label for="selectFlydubai">flydubai (FZ)</label>
+            <label for="selectFlydubai">Flydubai (FZ)</label>
           </div>
           <div class="radio-item">
             <input type="radio" id="selectInterline" name="airlineOption" value="interline">
@@ -26,7 +25,6 @@
         </div>
       </div>
 
-      <!-- Container for selecting a specific Interline Partner -->
       <div id="interlineAirlineSelectionContainer" style="display: none;">
         <h2>Select Interline Partner</h2>
         <p class="interline-prompt">Click on the name of the airline that you have your interline booking with to see its baggage allowance and rules.</p>
@@ -71,15 +69,16 @@
         </select>
       </div>
 
-      <!-- Flydubai Calculator Section -->
       <div id="flydubaiCalculatorContainer" style="display: block;"> <h2>flydubai Baggage Rates</h2>
-        <div class="form-group">
+        <div class="form-group autocomplete-container">
           <label for="fzOrigin">Origin City:</label>
           <input type="text" id="fzOrigin" placeholder="e.g. Dubai or DXB" autocomplete="off" />
+          <div class="autocomplete-suggestions" id="origin-suggestions"></div>
         </div>
-        <div class="form-group">
+        <div class="form-group autocomplete-container">
           <label for="fzDestination">Destination City:</label>
           <input type="text" id="fzDestination" placeholder="e.g. Jeddah or JED" autocomplete="off" />
+          <div class="autocomplete-suggestions" id="destination-suggestions"></div>
         </div>
         <div class="button-group">
           <button id="fzCalculateButton">Calculate Price</button>
@@ -89,8 +88,7 @@
         <div id="fzResult" class="result-display"></div>
       </div>
 
-      <!-- Condor Airlines Calculator Section -->
-      <div id="condorCalculatorContainer" style="display: none;">
+      <div id="condorCalculatorContainer" class="interline-calculator" style="display: none;">
         <h2>Condor Airlines (DE) Excess Baggage Calculator</h2>
         <form id="condorBaggageForm">
           <div class="form-group">
@@ -123,122 +121,41 @@
         <div id="condorResult" class="result-display"></div>
       </div>
       
-      <!-- Aegean Airlines Information Section -->
-      <div id="aegeanCalculatorContainer" style="display: none;">
-        <h2>Aegean Airlines (A3)</h2>
-        <div class="interline-rules-placeholder">
-            <p>Loading Aegean Airlines information...</p>
-        </div>
-        <div id="aegeanResult" class="result-display" style="display: none;"></div>
-      </div>
-
-      <!-- Air Algérie Information Section -->
-      <div id="airalgerieCalculatorContainer" style="display: none;">
-        <h2>Air Algérie (AH) Additional Piece Tariffs</h2>
-        <div class="interline-rules-placeholder">
-            <!-- Main text for Air Algerie (if any beyond the selector) will go here via JS -->
-        </div>
-        <div class="form-group"> <!-- Moved selector outside placeholder to be always visible when AH is selected -->
-            <label for="airAlgerieRegionSelector">Select Region/Route:</label>
-            <select id="airAlgerieRegionSelector">
-            <option value="">-- Choose a Region --</option>
-            </select>
-        </div>
-        <div id="airAlgerieTariffTableContainer">
-            <p>Please select a region to see the tariffs.</p>
-        </div>
-        <p class="small-note">General rules for overweight (23-32kg and >32kg) and oversized (158-203cm with 12000 DZD / 80 EUR fee if applicable) baggage also apply. Consult Air Algérie for full details.</p>
-        <div id="airalgerieResult" class="result-display" style="display: none;"></div> 
-      </div>
-
-      <!-- Air Astana Information Section -->
-      <div id="airastanaCalculatorContainer" style="display: none;">
-        <h2>Air Astana (KC) Additional Baggage</h2>
-        <div class="interline-rules-placeholder">
-            <p>Loading Air Astana information...</p>
-        </div>
-        <div id="airastanaResult" class="result-display" style="display: none;"></div>
-      </div>
-
-      <!-- Air Canada Information Section -->
-      <div id="aircanadaCalculatorContainer" style="display: none;">
-        <h2>Air Canada (AC)</h2>
-        <div class="interline-rules-placeholder">
-            <p>Loading Air Canada information...</p>
-        </div>
-        <div id="aircanadaResult" class="result-display" style="display: none;"></div>
-      </div>
-      
-      <!-- Air China Information Section -->
-      <div id="airchinaCalculatorContainer" style="display: none;">
-        <h2>Air China (CA)</h2>
-        <div class="interline-rules-placeholder">
-            <p>Loading Air China information...</p>
-        </div>
-        <div id="airchinaResult" class="result-display" style="display: none;"></div>
-      </div>
-
-      <!-- Air France Information Section -->
-      <div id="airfranceCalculatorContainer" style="display: none;">
-        <h2>Air France (AF)</h2>
-        <div class="interline-rules-placeholder">Baggage allowance and rules for Air France (AF) will be displayed here.</div>
-        <div id="airfranceResult" class="result-display" style="display: none;"></div>
-      </div>
-
-      <!-- Air Serbia Information Section -->
-      <div id="airserbiaCalculatorContainer" style="display: none;">
-        <h2>Air Serbia (JU)</h2>
-        <div class="interline-rules-placeholder">Baggage allowance and rules for Air Serbia (JU) will be displayed here.</div>
-        <div id="airserbiaResult" class="result-display" style="display: none;"></div>
-      </div>
-      
-      <!-- Alaska Airlines Information Section -->
-      <div id="alaskaCalculatorContainer" style="display: none;">
-        <h2>Alaska Airlines (AS)</h2>
-        <div class="interline-rules-placeholder">Baggage allowance and rules for Alaska Airlines (AS) will be displayed here.</div>
-        <div id="alaskaResult" class="result-display" style="display: none;"></div>
-      </div>
-      
-      <!-- Azerbaijan Airlines Information Section -->
-      <div id="azerbaijanCalculatorContainer" style="display: none;">
-        <h2>Azerbaijan Airlines (J2)</h2>
-        <div class="interline-rules-placeholder">Baggage allowance and rules for Azerbaijan Airlines (J2) will be displayed here.</div>
-        <div id="azerbaijanResult" class="result-display" style="display: none;"></div>
-      </div>
-      
-      <!-- Batik Air Malaysia Information Section -->
-      <div id="batikmalaysiaCalculatorContainer" style="display: none;">
-        <h2>Batik Air Malaysia (OD)</h2>
-        <div class="interline-rules-placeholder">Baggage allowance and rules for Batik Air Malaysia (OD) will be displayed here.</div>
-        <div id="batikmalaysiaResult" class="result-display" style="display: none;"></div>
-      </div>
-
-      <!-- Placeholder Sections for other Interline Partners -->
-      <div id="cathaypacificCalculatorContainer" style="display: none;"><h2>Cathay Pacific Airlines (CX)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Cathay Pacific Airlines (CX) will be displayed here.</p><div id="cathaypacificResult" class="result-display" style="display: none;"></div></div>
-      <div id="chinasouthernCalculatorContainer" style="display: none;"><h2>China Southern Airlines (CZ)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for China Southern Airlines (CZ) will be displayed here.</p><div id="chinasouthernResult" class="result-display" style="display: none;"></div></div>
-      <div id="croatiaCalculatorContainer" style="display: none;"><h2>Croatia Airlines (OU)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Croatia Airlines (OU) will be displayed here.</p><div id="croatiaResult" class="result-display" style="display: none;"></div></div>
-      <div id="deltaCalculatorContainer" style="display: none;"><h2>Delta Airlines (DL)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Delta Airlines (DL) will be displayed here.</p><div id="deltaResult" class="result-display" style="display: none;"></div></div>
-      <div id="emiratesCalculatorContainer" style="display: none;"><h2>Emirates Airlines (EK)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Emirates Airlines (EK) will be displayed here.</p><div id="emiratesResult" class="result-display" style="display: none;"></div></div>
-      <div id="ethiopianCalculatorContainer" style="display: none;"><h2>Ethiopian Airlines (ET)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Ethiopian Airlines (ET) will be displayed here.</p><div id="ethiopianResult" class="result-display" style="display: none;"></div></div>
-      <div id="gulfairCalculatorContainer" style="display: none;"><h2>Gulf Air (GF)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Gulf Air (GF) will be displayed here.</p><div id="gulfairResult" class="result-display" style="display: none;"></div></div>
-      <div id="jetblueCalculatorContainer" style="display: none;"><h2>JetBlue Airways (B6)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for JetBlue Airways (B6) will be displayed here.</p><div id="jetblueResult" class="result-display" style="display: none;"></div></div>
-      <div id="kenyaairwaysCalculatorContainer" style="display: none;"><h2>Kenya Airways (KQ)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Kenya Airways (KQ) will be displayed here.</p><div id="kenyaairwaysResult" class="result-display" style="display: none;"></div></div>
-      <div id="klmCalculatorContainer" style="display: none;"><h2>KLM (KL)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for KLM (KL) will be displayed here.</p><div id="klmResult" class="result-display" style="display: none;"></div></div>
-      <div id="koreanairCalculatorContainer" style="display: none;"><h2>Korean Air (KE)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Korean Air (KE) will be displayed here.</p><div id="koreanairResult" class="result-display" style="display: none;"></div></div>
-      <div id="lotpolishCalculatorContainer" style="display: none;"><h2>LOT Polish Airlines (LO)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for LOT Polish Airlines (LO) will be displayed here.</p><div id="lotpolishResult" class="result-display" style="display: none;"></div></div>
-      <div id="pakistanintlCalculatorContainer" style="display: none;"><h2>Pakistan Intl Airlines (PK)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Pakistan Intl Airlines (PK) will be displayed here.</p><div id="pakistanintlResult" class="result-display" style="display: none;"></div></div>
-      <div id="philippineCalculatorContainer" style="display: none;"><h2>Philippine Airlines (PR)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Philippine Airlines (PR) will be displayed here.</p><div id="philippineResult" class="result-display" style="display: none;"></div></div>
-      <div id="precisionairCalculatorContainer" style="display: none;"><h2>Precision Air (PW)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Precision Air (PW) will be displayed here.</p><div id="precisionairResult" class="result-display" style="display: none;"></div></div>
-      <div id="qantasCalculatorContainer" style="display: none;"><h2>Qantas (QF)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Qantas (QF) will be displayed here.</p><div id="qantasResult" class="result-display" style="display: none;"></div></div>
-      <div id="royalbruneiCalculatorContainer" style="display: none;"><h2>Royal Brunei Airlines (BI)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Royal Brunei Airlines (BI) will be displayed here.</p><div id="royalbruneiResult" class="result-display" style="display: none;"></div></div>
-      <div id="rwandairCalculatorContainer" style="display: none;"><h2>Rwandair (WB)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Rwandair (WB) will be displayed here.</p><div id="rwandairResult" class="result-display" style="display: none;"></div></div>
-      <div id="srilankanCalculatorContainer" style="display: none;"><h2>SriLankan Airlines (UL)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for SriLankan Airlines (UL) will be displayed here.</p><div id="srilankanResult" class="result-display" style="display: none;"></div></div>
-      <div id="saudiarabianCalculatorContainer" style="display: none;"><h2>Saudi Arabian (SV)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Saudi Arabian (SV) will be displayed here.</p><div id="saudiarabianResult" class="result-display" style="display: none;"></div></div>
-      <div id="singaporeCalculatorContainer" style="display: none;"><h2>Singapore Airlines (SQ)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Singapore Airlines (SQ) will be displayed here.</p><div id="singaporeResult" class="result-display" style="display: none;"></div></div>
-      <div id="taromCalculatorContainer" style="display: none;"><h2>Tarom Airlines (RO)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Tarom Airlines (RO) will be displayed here.</p><div id="taromResult" class="result-display" style="display: none;"></div></div>
-      <div id="unitedCalculatorContainer" style="display: none;"><h2>United Airlines (UA)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for United Airlines (UA) will be displayed here.</p><div id="unitedResult" class="result-display" style="display: none;"></div></div>
-      <div id="utairCalculatorContainer" style="display: none;"><h2>UT Air (UT)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for UT Air (UT) will be displayed here.</p><div id="utairResult" class="result-display" style="display: none;"></div></div>
-      <div id="virginatlanticCalculatorContainer" style="display: none;"><h2>Virgin Atlantic (VS)</h2><p class="interline-rules-placeholder">Baggage allowance and rules for Virgin Atlantic (VS) will be displayed here.</p><div id="virginatlanticResult" class="result-display" style="display: none;"></div></div>
+      <div id="aegeanCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Aegean Airlines (A3)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="airalgerieCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Air Algérie (AH) Additional Piece Tariffs</h2><div class="interline-rules-placeholder"></div><div class="form-group"><label for="airAlgerieRegionSelector">Select Region/Route:</label><select id="airAlgerieRegionSelector"><option value="">-- Choose a Region --</option></select></div><div id="airAlgerieTariffTableContainer"></div></div>
+      <div id="airastanaCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Air Astana (KC) Additional Baggage</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="aircanadaCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Air Canada (AC)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="airchinaCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Air China (CA)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="airfranceCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Air France (AF)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="airserbiaCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Air Serbia (JU)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="alaskaCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Alaska Airlines (AS)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="azerbaijanCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Azerbaijan Airlines (J2)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="batikmalaysiaCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Batik Air Malaysia (OD)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="cathaypacificCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Cathay Pacific Airlines (CX)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="chinasouthernCalculatorContainer" class="interline-calculator" style="display: none;"><h2>China Southern Airlines (CZ)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="croatiaCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Croatia Airlines (OU)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="deltaCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Delta Airlines (DL)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="emiratesCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Emirates Airlines (EK)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="ethiopianCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Ethiopian Airlines (ET)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="gulfairCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Gulf Air (GF)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="jetblueCalculatorContainer" class="interline-calculator" style="display: none;"><h2>JetBlue Airways (B6)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="kenyaairwaysCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Kenya Airways (KQ)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="klmCalculatorContainer" class="interline-calculator" style="display: none;"><h2>KLM (KL)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="koreanairCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Korean Air (KE)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="lotpolishCalculatorContainer" class="interline-calculator" style="display: none;"><h2>LOT Polish Airlines (LO)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="pakistanintlCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Pakistan Intl Airlines (PK)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="philippineCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Philippine Airlines (PR)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="precisionairCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Precision Air (PW)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="qantasCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Qantas (QF)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="royalbruneiCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Royal Brunei Airlines (BI)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="rwandairCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Rwandair (WB)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="srilankanCalculatorContainer" class="interline-calculator" style="display: none;"><h2>SriLankan Airlines (UL)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="saudiarabianCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Saudi Arabian (SV)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="singaporeCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Singapore Airlines (SQ)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="taromCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Tarom Airlines (RO)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="unitedCalculatorContainer" class="interline-calculator" style="display: none;"><h2>United Airlines (UA)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="utairCalculatorContainer" class="interline-calculator" style="display: none;"><h2>UT Air (UT)</h2><div class="interline-rules-placeholder"></div></div>
+      <div id="virginatlanticCalculatorContainer" class="interline-calculator" style="display: none;"><h2>Virgin Atlantic (VS)</h2><div class="interline-rules-placeholder"></div></div>
 
       <footer>Created by Kenan Alhennawi</footer>
     </div>

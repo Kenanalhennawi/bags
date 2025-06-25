@@ -1,29 +1,19 @@
-// app.js
-// Main application logic for the Airline Baggage Calculator.
-// This file handles UI interactions, dynamic loading of airline-specific modules,
-// and manages common elements.
-
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Global variable for Flydubai data.json ---
     let fzData = null;
+    let allDestinations = [];
 
-    // --- Top-Level Airline Option Elements ---
     const airlineOptionRadios = document.querySelectorAll('input[name="airlineOption"]');
-
-    // --- Interline Specific Elements ---
     const interlineAirlineSelectionContainer = document.getElementById('interlineAirlineSelectionContainer');
     const interlinePartnerSelector = document.getElementById('interlinePartnerSelector');
-
-    // --- Flydubai Specific Elements (for the calculator) ---
     const fzOriginInput = document.getElementById("fzOrigin");
     const fzDestInput = document.getElementById("fzDestination");
     const fzResultDiv = document.getElementById("fzResult");
     const fzCalculateButton = document.getElementById("fzCalculateButton");
     const fzSwapButton = document.getElementById("fzSwapButton");
     const fzClearButton = document.getElementById("fzClearButton");
+    const originSuggestions = document.getElementById('origin-suggestions');
+    const destinationSuggestions = document.getElementById('destination-suggestions');
 
-    // --- Main containers for each airline's content ---
-    // These are the parent divs that will be shown/hidden.
     const calculatorContainers = {
         flydubai: document.getElementById('flydubaiCalculatorContainer'),
         condor: document.getElementById('condorCalculatorContainer'),
@@ -64,24 +54,24 @@ document.addEventListener('DOMContentLoaded', () => {
         virginatlantic: document.getElementById('virginatlanticCalculatorContainer')
     };
     
-    // --- Placeholders where airline-specific HTML content will be injected ---
     const airlinePlaceholders = {};
     for (const key in calculatorContainers) {
         if (calculatorContainers[key] && key !== 'flydubai' && key !== 'condor' && key !== 'airalgerie') {
-            airlinePlaceholders[key] = calculatorContainers[key].querySelector('.interline-rules-placeholder');
+            const placeholder = calculatorContainers[key].querySelector('.interline-rules-placeholder');
+            if (placeholder) {
+                airlinePlaceholders[key] = placeholder;
+            }
         }
     }
-    // Specific placeholder for Air Algerie's main text area (distinct from its table/dropdown)
     if (calculatorContainers.airalgerie) {
         airlinePlaceholders.airalgerie = calculatorContainers.airalgerie.querySelector('.interline-rules-placeholder');
     }
 
-
-    // --- Load data.json for Flydubai ---
     fetch("data.json")
       .then((res) => res.json())
       .then((json) => {
         fzData = json;
+        buildAllDestinationsList();
         if(fzCalculateButton) fzCalculateButton.disabled = false;
       })
       .catch((err) => {
@@ -93,8 +83,136 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     if(fzCalculateButton) fzCalculateButton.disabled = true;
 
+    function buildAllDestinationsList() {
+        if (!fzData) return;
 
-    // ======== AIRLINE SELECTION LOGIC ========
+        const iataToCountryName = {
+            'DXB': 'United Arab Emirates', 'AUH': 'United Arab Emirates', 'BAH': 'Bahrain', 
+            'DOH': 'Qatar', 'KWI': 'Kuwait', 'MCT': 'Oman', 'SLL': 'Oman', 'AHB': 'Saudi Arabia', 
+            'ULH': 'Saudi Arabia', 'DMM': 'Saudi Arabia', 'AJF': 'Saudi Arabia', 'MED': 'Saudi Arabia', 
+            'NUM': 'Saudi Arabia', 'EAM': 'Saudi Arabia', 'AQI': 'Saudi Arabia', 'TUU': 'Saudi Arabia', 
+            'RSI': 'Saudi Arabia', 'ELQ': 'Saudi Arabia', 'GIZ': 'Saudi Arabia', 'HAS': 'Saudi Arabia', 
+            'HOF': 'Saudi Arabia', 'JED': 'Saudi Arabia', 'RUH': 'Saudi Arabia', 'TIF': 'Saudi Arabia', 
+            'YNB': 'Saudi Arabia', 'AMM': 'Jordan', 'BGW': 'Iraq', 'DAM': 'Syria', 'IFN': 'Iran', 
+            'KER': 'Iran', 'BEY': 'Lebanon', 'EBL': 'Iraq', 'IKA': 'Iran', 'BSR': 'Iraq', 
+            'BND': 'Iran', 'KIH': 'Iran', 'LRR': 'Iran', 'MHD': 'Iran', 'NJF': 'Iraq', 
+            'SYZ': 'Iran', 'SUF': 'Iraq', 'TLV': 'Israel', 'ADD': 'Ethiopia', 'DAR': 'Tanzania', 
+            'CAI': 'Egypt', 'SPX': 'Egypt', 'HBE': 'Egypt', 'DBB': 'Egypt', 'ALY': 'Egypt', 
+            'HGA': 'Somalia', 'JUB': 'South Sudan', 'DJB': 'Djibouti', 'MBA': 'Kenya', 
+            'ZNZ': 'Tanzania', 'EBB': 'Uganda', 'ASM': 'Eritrea', 'AMD': 'India', 'BWA': 'Nepal', 
+            'CGP': 'Bangladesh', 'LYP': 'Pakistan', 'HYD': 'India', 'KBL': 'Afghanistan', 
+            'KTM': 'Nepal', 'COK': 'India', 'CCJ': 'India', 'LKO': 'India', 'MLE': "Maldives", 
+            'MUX': 'Pakistan', 'SKT': 'Pakistan', 'UET': 'Pakistan', 'DEL': 'India', 'DAC': 'Bangladesh', 
+            'KHI': 'Pakistan', 'BOM': 'India', 'CCU': 'India', 'ISB': 'Pakistan', 'CMB': 'Sri Lanka', 
+            'LHE': 'Pakistan', 'BKK': 'Thailand', 'KBV': 'Thailand', 'LGK': 'Malaysia', 'UTP': 'Thailand', 
+            'PEN': 'Malaysia', 'IST': 'Turkey', 'ESB': 'Turkey', 'ASB': 'Turkmenistan', 'GYD': 'Azerbaijan', 
+            'MSQ': 'Belarus', 'SVO': 'Russia', 'BEG': 'Serbia', 'WAW': 'Poland', 'TAS': 'Uzbekistan', 
+            'SKD': 'Uzbekistan', 'SJJ': 'Bosnia and Herzegovina', 'ALA': 'Kazakhstan', 'NQZ': 'Kazakhstan', 
+            'BSL': 'Switzerland', 'BUS': 'Georgia', 'BJV': 'Turkey', 'OTP': 'Romania', 'BUD': 'Hungary', 
+            'CTA': 'Italy', 'CFU': 'Greece', 'DBV': 'Croatia', 'DYU': 'Tajikistan', 'KZN': 'Russia', 
+            'KRK': 'Poland', 'KRR': 'Russia', 'LJU': 'Slovenia', 'MCX': 'Russia', 'BGY': 'Italy', 
+            'MRV': 'Russia', 'JMK': 'Greece', 'NAP': 'Italy', 'OVB': 'Russia', 'OLB': 'Italy', 
+            'PSA': 'Italy', 'POZ': 'Poland', 'PRG': 'Czech Republic', 'ROV': 'Russia', 'SZG': 'Austria', 
+            'KUF': 'Russia', 'JTR': 'Greece', 'CIT': 'Kazakhstan', 'AER': 'Russia', 'SOF': 'Bulgaria', 
+            'LED': 'Russia', 'TBS': 'Georgia', 'TIV': 'Montenegro', 'TIA': 'Albania', 'UFA': 'Russia', 
+            'VOG': 'Russia', 'FRU': 'Kyrgyzstan', 'SVX': 'Russia', 'EVN': 'Armenia', 'ZAG': 'Croatia',
+            'BUZ': 'Iran', 'GSM': 'Iran', 'TBZ': 'Iran', 'PEW': 'Pakistan', 'AYT': 'Turkey', 
+            'RMO': 'Moldova', 'IAS': 'Romania', 'RIX': 'Latvia', 'VNO': 'Lithuania'
+        };
+
+        const destinationMap = new Map();
+        for (const iataCode in fzData.iata_to_city) {
+            const cityName = fzData.iata_to_city[iataCode];
+            const countryName = iataToCountryName[iataCode] || 'Unknown';
+            
+            if (!destinationMap.has(iataCode)) {
+                destinationMap.set(iataCode, {
+                    city: cityName,
+                    country: countryName,
+                    airportName: `${cityName} Airport`
+                });
+            }
+        }
+        
+        allDestinations = Array.from(destinationMap.entries()).map(([iata, details]) => ({
+            iata,
+            city: details.city,
+            country: details.country,
+            airportName: details.airportName
+        })).sort((a, b) => a.city.localeCompare(b.city));
+    }
+    
+    function showSuggestions(e, suggestionsContainer) {
+        const inputVal = e.target.value.toLowerCase();
+        suggestionsContainer.innerHTML = '';
+        if (!inputVal) {
+            suggestionsContainer.style.display = 'none';
+            return;
+        }
+
+        const filtered = allDestinations.filter(item => 
+            item.city.toLowerCase().includes(inputVal) || 
+            item.country.toLowerCase().includes(inputVal) || 
+            item.iata.toLowerCase().includes(inputVal)
+        ).slice(0, 7);
+
+        if (filtered.length > 0) {
+            filtered.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'suggestion-item';
+                
+                const textWrapper = document.createElement('div');
+                
+                const mainText = document.createElement('span');
+                mainText.className = 'main-text';
+                mainText.textContent = `${item.city}, ${item.country}`;
+                
+                const subText = document.createElement('span');
+                subText.className = 'sub-text';
+                subText.textContent = item.airportName;
+
+                const iataCodeSpan = document.createElement('span');
+                iataCodeSpan.className = 'iata-code';
+                iataCodeSpan.textContent = item.iata;
+                
+                textWrapper.appendChild(mainText);
+                textWrapper.appendChild(subText);
+                div.appendChild(textWrapper);
+                div.appendChild(iataCodeSpan);
+
+                div.addEventListener('click', () => {
+                    e.target.value = item.iata;
+                    suggestionsContainer.innerHTML = '';
+                    suggestionsContainer.style.display = 'none';
+                });
+                suggestionsContainer.appendChild(div);
+            });
+            suggestionsContainer.style.display = 'block';
+        } else {
+            suggestionsContainer.style.display = 'none';
+        }
+    }
+    
+    if (fzOriginInput) {
+        fzOriginInput.addEventListener('input', (e) => showSuggestions(e, originSuggestions));
+        fzOriginInput.addEventListener('focus', () => {
+            if(destinationSuggestions) destinationSuggestions.style.display = 'none';
+        });
+    }
+    if (fzDestInput) {
+        fzDestInput.addEventListener('input', (e) => showSuggestions(e, destinationSuggestions));
+        fzDestInput.addEventListener('focus', () => {
+            if(originSuggestions) originSuggestions.style.display = 'none';
+        });
+    }
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.autocomplete-container')) {
+            if(originSuggestions) originSuggestions.style.display = 'none';
+            if(destinationSuggestions) destinationSuggestions.style.display = 'none';
+        }
+    });
+
     function getSelectedAirlineOption() {
         for (const radio of airlineOptionRadios) {
             if (radio.checked) {
@@ -157,7 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     displayFunctionNameSegment = moduleFileName.charAt(0).toUpperCase() + moduleFileName.slice(1);
                 }
                 
-                
                 const placeholder = airlinePlaceholders[selectedInterlinePartner];
                 if (!placeholder && selectedInterlinePartner !== 'condor' && selectedInterlinePartner !== 'airalgerie') {
                     console.error(`Placeholder for ${selectedInterlinePartner} not found! Check airlinePlaceholders setup.`);
@@ -167,37 +284,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     return; 
                 }
                 
-                console.log(`Attempting to load module: ./interline/${moduleFileName}.js for partner: ${selectedInterlinePartner}`);
-
                 try {
                     const airlineModule = await import(`./interline/${moduleFileName}.js`);
-                    console.log(`Module ${moduleFileName}.js loaded successfully.`, airlineModule);
-
                     const displayFunctionName = `display${displayFunctionNameSegment}Info`;
-                    console.log(`Attempting to call function: ${displayFunctionName}`);
 
                     if (selectedInterlinePartner === 'condor') {
                         if (airlineModule.initializeCondorCalculator) {
-                            console.log("Initializing Condor Calculator...");
                             airlineModule.initializeCondorCalculator();
-                        } else {
-                            console.warn(`initializeCondorCalculator function not found in condor.js`);
                         }
                     } else if (selectedInterlinePartner === 'airalgerie') {
                          if (airlineModule.initializeAirAlgerie) {
-                            console.log("Initializing Air Algerie UI...");
                             const regionSelector = document.getElementById('airAlgerieRegionSelector');
                             const tariffTableContainer = document.getElementById('airAlgerieTariffTableContainer');
                             airlineModule.initializeAirAlgerie(regionSelector, tariffTableContainer, placeholder); 
-                        } else {
-                             console.warn(`initializeAirAlgerie function not found in airalgerie.js`);
                         }
                     } else {
                         if (airlineModule && typeof airlineModule[displayFunctionName] === 'function') {
-                            console.log(`Calling ${displayFunctionName}...`);
                             airlineModule[displayFunctionName](placeholder);
                         } else {
-                            console.warn(`Display function ${displayFunctionName} not found or not a function in module ${moduleFileName}.js`);
                             if(placeholder) placeholder.innerHTML = `<p>Information for ${selectedInterlinePartner} is currently being updated. Please check the airline's official website.</p>`;
                         }
                     }
@@ -230,10 +334,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    document.querySelectorAll('.radio-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const radio = this.querySelector('input[type="radio"]');
+            if (radio && !radio.checked) {
+                radio.checked = true;
+                radio.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        });
+    });
+
     resetAllInterlinePlaceholders(); 
     updateDisplayedCalculator(); 
 
-    // ======== FLYDUBAI CALCULATOR LOGIC ========
     function fzResolveName(code) {
       if (!fzData) return code;
       code = code.trim().toUpperCase();
@@ -310,7 +423,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if(fzCalculateButton) fzCalculateButton.addEventListener("click", fzCalculatePrice);
         if(fzSwapButton) fzSwapButton.addEventListener("click", fzSwapCities);
         if(fzClearButton) fzClearButton.addEventListener("click", fzClearFields);
-        if(fzOriginInput) fzOriginInput.addEventListener("keydown", function (e) { if (e.key === "Enter") fzCalculatePrice(); });
-        if(fzDestInput) fzDestInput.addEventListener("keydown", function (e) { if (e.key === "Enter") fzCalculatePrice(); });
+        
+        const enterKeyHandler = (e) => {
+            if (e.key === "Enter") {
+                fzCalculateButton.click();
+            }
+        };
+
+        if(fzOriginInput) fzOriginInput.addEventListener("keydown", enterKeyHandler);
+        if(fzDestInput) fzDestInput.addEventListener("keydown", enterKeyHandler);
     }
 });

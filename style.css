@@ -3,7 +3,7 @@ body {
   font-family: "Segoe UI", sans-serif;
   background: url("background.jpg") no-repeat center center fixed;
   background-size: cover;
-  color: white; /* Default text color for the page */
+  color: white;
 }
 .overlay {
   background-color: rgba(0, 0, 0, 0.6);
@@ -24,83 +24,66 @@ body {
   max-width: 650px; 
   width: 90%;
 }
-h1 { /* Main page title */
+h1 {
   margin-bottom: 25px;
   font-size: 28px;
-  color: #FF7A00; /* Flydubai Orange */
+  color: #FF7A00;
 }
-
-/* --- Flydubai Section Specific Styles --- */
 #flydubaiCalculatorContainer h2 {
   font-size: 22px; 
-  color: #FF7A00; /* Flydubai Orange */
+  color: #FF7A00;
   margin-bottom: 20px;
   text-align: center;
 }
-/* Flydubai Buttons - ALL ORANGE with WHITE text */
 #fzCalculateButton, 
 #fzSwapButton, 
 #fzClearButton {
-  background-color: #ff9100; /* Original FZ Button Orange */
-  color: white !important; /* Ensure white text */
+  background-color: #ff9100;
+  color: white !important;
 }
 #fzCalculateButton:hover, 
 #fzSwapButton:hover, 
 #fzClearButton:hover {
-  background-color: #ff7000; /* Darker Original FZ Button Orange */
-  color: white !important; /* Ensure white text */
+  background-color: #ff7000;
+  color: white !important;
 }
 #fzResult { 
-  color: #ffdd57; /* Original Gold for FZ result text */
+  color: #FF4500; /* Changed to red-orange */
 }
-
-/* --- Interline Partner Sections Styles --- */
-/* NOTE: The long list of interline H2s has been consolidated.
-  Ensure the container for each interline partner has class="interline-calculator" in your HTML.
-*/
 .top-level-airline-selection h2,
 #interlineAirlineSelectionContainer h2,
 .interline-calculator h2 {
   font-size: 22px; 
-  color: #FF7A00; /* Flydubai Orange */
+  color: #FF7A00;
   margin-bottom: 20px;
   text-align: center;
 }
-
-/* Buttons within Interline sections: Orange background, BLUE text */
-#condorCalculatorContainer button[type="submit"], /* Example of specific button if needed */
+#condorCalculatorContainer button[type="submit"],
 .calculator-cta-button { 
-  background-color: #FF8C00 !important; /* Brighter Orange for these CTA/action buttons */
-  color: #0033A0 !important; /* Flydubai Blue text */
+  background-color: #FF8C00 !important;
+  color: #0033A0 !important;
   font-weight: bold; 
 }
 #condorCalculatorContainer button[type="submit"]:hover,
 .calculator-cta-button:hover {
-  background-color: #E67E00 !important; /* Slightly Darker version of the CTA orange */
-  color: #00287D !important; /* Darker Flydubai Blue text on hover */
+  background-color: #E67E00 !important;
+  color: #00287D !important;
 }
-
-/* Accents within Interline sections */
 .interline-rules-placeholder h4,
 .rules-table-title,
 .calculator-cta-icon {
-    color: #FF7A00; /* Flydubai Orange */
+    color: #FF7A00;
 }
 .interline-rules-placeholder a {
-    color: #FF9933; /* Lighter Orange for links in interline sections */
+    color: #FF9933;
 }
 .interline-rules-placeholder a:hover {
-    color: #FF7A00; /* Flydubai Orange */
+    color: #FF7A00;
 }
 .rules-table thead th {
     background-color: rgba(0, 0, 0, 0.3);
-    color: #FF7A00; /* Flydubai Orange for table headers */
+    color: #FF7A00;
 }
-.radio-item input[type="radio"] { 
-    accent-color: #FF7A00; /* Flydubai Orange for radio dot */
-}
-
-/* --- General Styles (Applied to all unless overridden) --- */
 .form-group {
   margin-bottom: 15px;
   text-align: left;
@@ -111,7 +94,6 @@ h1 { /* Main page title */
   margin-bottom: 6px;
   color: #f0f0f0; 
 }
-
 .form-group.checkbox-group label.checkbox-label {
   display: inline-block; 
   margin-bottom: 0;
@@ -135,14 +117,12 @@ input[type="checkbox"] {
   margin-right: 8px;
   vertical-align: middle;
 }
-
 .button-group {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
   gap: 10px; 
 }
-/* Base button styling - this is a fallback, specific styles above should take precedence */
 button, 
 .calculator-cta-button { 
   flex: 1;
@@ -155,9 +135,8 @@ button,
   text-decoration: none; 
   display: inline-block; 
   text-align: center; 
-  color: white; /* Default button text color */
+  color: white;
 }
-
 .result-display { 
   margin-top: 25px;
   font-size: 17px; 
@@ -173,7 +152,6 @@ button,
 #condorResult { 
     color: #aadef8; 
 }
-
 .interline-rules-placeholder {
     font-size: 15px; 
     color: #f0f0f0;
@@ -207,7 +185,6 @@ button,
     margin-bottom: 6px; 
     padding-left: 5px;
 }
-
 .contact-numbers-section ul {
     padding-left: 15px; 
 }
@@ -219,13 +196,11 @@ button,
     line-height: 1.6;
     color: #ccc;
 }
-
 footer {
   margin-top: 40px;
   font-size: 12px;
   color: #ccc;
 }
-
 .top-level-airline-selection,
 #interlineAirlineSelectionContainer {
     margin-bottom: 20px;
@@ -234,45 +209,49 @@ footer {
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.2); 
 }
-
 .interline-prompt {
     font-size: 0.9em;
     color: #ddd;
     margin-bottom: 15px;
     text-align: center;
 }
-
-.radio-group-container {
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    gap: 10px; 
-    margin: 0 auto; 
-}
-
 .radio-group-container.top-level-radio-group {
-    max-width: 300px; 
-    align-items: center; 
-}
-
-.radio-item { 
     display: flex;
-    align-items: center; 
-    padding: 5px 0; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
-
+.radio-item {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.radio-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+.radio-item:has(input:checked) {
+    background-color: rgba(255, 140, 0, 0.25);
+    border-color: #FF8C00;
+}
 .radio-item input[type="radio"] {
     width: auto; 
-    margin-right: 10px; 
+    margin-right: 12px; 
+    accent-color: #FF8C00;
+    transform: scale(1.2);
+    pointer-events: none;
 }
-
 .radio-item label { 
-    font-size: 16px; 
-    margin-bottom: 0; 
+    font-size: 1em;
     color: white; 
     cursor: pointer; 
 }
-
 #interlinePartnerSelector,
 #airAlgerieRegionSelector { 
     width: 100%;
@@ -280,7 +259,6 @@ footer {
     margin: 10px auto; 
     display: block;
 }
-
 .rules-table {
     width: 100%;
     margin-top: 15px;
@@ -293,14 +271,12 @@ footer {
     padding: 8px;
     text-align: left;
 }
-
 .small-note {
     font-size: 0.85em;
     color: #ccc;
     margin-top: 15px;
     text-align: left;
 }
-
 .calculator-cta-section {
     display: flex;
     align-items: center;
@@ -311,29 +287,22 @@ footer {
     background-color: rgba(0, 0, 0, 0.1);
     margin-top: 10px;
 }
-
 .calculator-cta-icon {
     font-size: 2.5em; 
     flex-shrink: 0; 
 }
-
 .calculator-cta-content {
     text-align: left;
 }
-
 .calculator-cta-content h4 { 
     margin-top: 0;
     margin-bottom: 8px;
 }
-
 .calculator-cta-content p {
     margin-bottom: 15px;
     font-size: 0.95em;
     line-height: 1.5;
 }
-
-/* --- Airline Info Card Modern Style --- */
-/* NOTE: The duplicate card styles have been removed. This is the single, consolidated version. */
 .airline-info-card {
     background: rgba(40, 40, 40, 0.85);
     border-radius: 16px;
@@ -398,23 +367,72 @@ footer {
     background: #ff7000;
     color: #fff;
 }
+.autocomplete-container {
+    position: relative;
+}
+.autocomplete-suggestions {
+    position: absolute;
+    border: 1px solid rgba(120, 120, 120, 0.5);
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    max-height: 240px;
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+.suggestion-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+    color: #ecf0f1;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+.suggestion-item:hover, .suggestion-item.active {
+    background-color: #333;
+}
+.suggestion-item .main-text {
+    font-weight: bold;
+    display: block;
+}
+.suggestion-item .sub-text {
+    font-size: 0.85em;
+    color: #bdc3c7;
+    display: block;
+    margin-top: 2px;
+}
+.suggestion-item .iata-code {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #bdc3c7;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    padding: 2px 6px;
+}
 
-/* Responsive for mobile */
 @media (max-width: 500px) {
     .airline-info-card {
         padding: 16px 4vw 24px 4vw;
         max-width: 98vw;
     }
-    .airline-card-title, /* Combined from other card styles for responsiveness */
+    .airline-card-title,
     .airline-header {
         font-size: 1.3rem;
     }
-    .airline-card-cta-title, /* Combined from other card styles for responsiveness */
+    .airline-card-cta-title,
     .airline-cta-title {
         font-size: 1rem;
     }
-    .airline-card-cta-btn, /* Combined from other card styles for responsiveness */
-    .airline-cta-button {
+    .airline-card-cta-btn,
+    .calculator-cta-button {
         font-size: 1rem;
         padding: 10px 10vw;
     }
