@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'PSA': 'Italy', 'POZ': 'Poland', 'PRG': 'Czech Republic', 'ROV': 'Russia', 'SZG': 'Austria', 
             'KUF': 'Russia', 'JTR': 'Greece', 'CIT': 'Kazakhstan', 'AER': 'Russia', 'SOF': 'Bulgaria', 
             'LED': 'Russia', 'TBS': 'Georgia', 'TIV': 'Montenegro', 'TIA': 'Albania', 'UFA': 'Russia', 
-            'VOG': 'Russia', 'FRU': 'Kyrgyzstan', 'SVX': 'Russia', 'EVN': 'Armenia', 'ZAG': 'Croatia',
+            'VOG': 'Russia', 'BSZ': 'Kyrgyzstan', 'SVX': 'Russia', 'EVN': 'Armenia', 'ZAG': 'Croatia',
             'BUZ': 'Iran', 'GSM': 'Iran', 'TBZ': 'Iran', 'PEW': 'Pakistan', 'AYT': 'Turkey', 
             'RMO': 'Moldova', 'IAS': 'Romania', 'RIX': 'Latvia', 'VNO': 'Lithuania'
         };
@@ -433,4 +433,5 @@ document.addEventListener('DOMContentLoaded', () => {
         if(fzOriginInput) fzOriginInput.addEventListener("keydown", enterKeyHandler);
         if(fzDestInput) fzDestInput.addEventListener("keydown", enterKeyHandler);
     }
+
 });
