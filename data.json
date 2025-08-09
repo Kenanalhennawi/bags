@@ -183,7 +183,7 @@
       "Basel": "BSL", "BSL": "BSL",
       "Batumi": "BUS", "BUS": "BUS",
       "Belgrade": "BEG", "BEG": "BEG",
-      "Bishkek": "FRU", "FRU": "FRU",
+      "Bishkek": "BSZ", "BSZ": "BSZ",
       "Bodrum": "BJV", "BJV": "BJV",
       "Bucharest": "OTP", "OTP": "OTP",
       "Budapest": "BUD", "BUD": "BUD",
@@ -242,7 +242,7 @@
     }
   },
   "iata_to_city": {
-    "DXB": "Dubai", "AUH": "Abu Dhabi", "BAH": "Bahrain", "FRU": "Bishkek", "DOH": "Doha",
+    "DXB": "Dubai", "AUH": "Abu Dhabi", "BAH": "Bahrain", "BSZ": "Bishkek", "DOH": "Doha",
     "DAM": "Damascus", "KWI": "Kuwait", "JED": "Jeddah", "RUH": "Riyadh", "DMM": "Dammam",
     "AMM": "Amman", "BGW": "Baghdad", "BEY": "Beirut", "IKA": "Tehran", "CAI": "Cairo",
     "ADD": "Addis Ababa", "DAR": "Dar es Salaam", "MBA": "Mombasa", "DEL": "Delhi",
