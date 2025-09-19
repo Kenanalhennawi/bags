@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'BND': 'Iran', 'KIH': 'Iran', 'LRR': 'Iran', 'MHD': 'Iran', 'NJF': 'Iraq', 
             'SYZ': 'Iran', 'SUF': 'Iraq', 'TLV': 'Israel', 'ADD': 'Ethiopia', 'DAR': 'Tanzania', 
             'CAI': 'Egypt', 'SPX': 'Egypt', 'HBE': 'Egypt', 'DBB': 'Egypt', 'ALY': 'Egypt', 
-            'HGA': 'Somalia', 'JUB': 'South Sudan', 'DJB': 'Djibouti', 'MBA': 'Kenya', 
+            'HGA': 'Somalia', 'JUB': 'South Sudan', 'DJB': 'Djibouti', 'MBA': 'Kenya', 'NBO': 'Kenya', 
             'ZNZ': 'Tanzania', 'EBB': 'Uganda', 'ASM': 'Eritrea', 'AMD': 'India', 'BWA': 'Nepal', 
             'CGP': 'Bangladesh', 'LYP': 'Pakistan', 'HYD': 'India', 'KBL': 'Afghanistan', 
             'KTM': 'Nepal', 'COK': 'India', 'CCJ': 'India', 'LKO': 'India', 'MLE': "Maldives", 
@@ -435,3 +435,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
