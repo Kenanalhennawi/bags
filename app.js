@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const interlinePartnerSelector = document.getElementById('interlinePartnerSelector');
     const fzOriginInput = document.getElementById("fzOrigin");
     const fzDestInput = document.getElementById("fzDestination");
+    const fzWeightInput = document.getElementById("fzWeight");
     const fzResultDiv = document.getElementById("fzResult");
     const fzCalculateButton = document.getElementById("fzCalculateButton");
     const fzSwapButton = document.getElementById("fzSwapButton");
@@ -378,15 +379,31 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const originInputVal = fzOriginInput ? fzOriginInput.value.trim() : "";
       const destInputVal = fzDestInput ? fzDestInput.value.trim() : "";
+      const weightRaw = fzWeightInput ? String(fzWeightInput.value).trim() : "";
+      const weightKg = weightRaw === "" ? null : Number(weightRaw);
+      const hasValidWeight = weightKg !== null && Number.isFinite(weightKg) && weightKg >= 0;
+      if (weightRaw !== "" && !hasValidWeight) {
+        if (fzResultDiv) fzResultDiv.textContent = "Please enter a valid baggage weight (0 or more).";
+        return;
+      }
+
       const originUpper = originInputVal.toUpperCase();
       const destinationUpper = destInputVal.toUpperCase();
 
       if (originUpper === "ASM" || originUpper === "ASMARA" || destinationUpper === "ASM" || destinationUpper === "ASMARA") {
         const originName = fzResolveName(originInputVal);
         const destinationName = fzResolveName(destInputVal);
-        if(fzResultDiv) fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: 80 AED`;
+        if (fzResultDiv) {
+          if (hasValidWeight) {
+            const total = Math.round(80 * weightKg * 100) / 100;
+            fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: 80 AED | Total for ${weightKg} kg: ${total} AED`;
+          } else {
+            fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: 80 AED`;
+          }
+        }
         return;
       }
+
       const zone1 = fzGetZone(originInputVal);
       const zone2 = fzGetZone(destInputVal);
       if (!zone1 || !zone2) {
@@ -399,9 +416,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if(fzResultDiv) fzResultDiv.textContent = "Price not available for this Flydubai route.";
         return;
       }
+
       const originName = fzResolveName(originInputVal);
       const destinationName = fzResolveName(destInputVal);
-      if(fzResultDiv) fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: ${price} AED`;
+
+      if (fzResultDiv) {
+        if (hasValidWeight) {
+          const total = Math.round(price * weightKg * 100) / 100;
+          fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: ${price} AED | Total for ${weightKg} kg: ${total} AED`;
+        } else {
+          fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: ${price} AED`;
+        }
+      }
     }
 
     function fzSwapCities() {
@@ -416,6 +442,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function fzClearFields() {
       if(fzOriginInput) fzOriginInput.value = "";
       if(fzDestInput) fzDestInput.value = "";
+      if(fzWeightInput) fzWeightInput.value = "";
       if(fzResultDiv) fzResultDiv.textContent = "";
     }
 
@@ -432,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if(fzOriginInput) fzOriginInput.addEventListener("keydown", enterKeyHandler);
         if(fzDestInput) fzDestInput.addEventListener("keydown", enterKeyHandler);
+        if(fzWeightInput) fzWeightInput.addEventListener("keydown", enterKeyHandler);
     }
 
 });
-
