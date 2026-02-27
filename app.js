@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'KTM': 'Nepal', 'COK': 'India', 'CCJ': 'India', 'LKO': 'India', 'MLE': "Maldives", 
             'MUX': 'Pakistan', 'SKT': 'Pakistan', 'UET': 'Pakistan', 'DEL': 'India', 'DAC': 'Bangladesh', 
             'KHI': 'Pakistan', 'BOM': 'India', 'CCU': 'India', 'ISB': 'Pakistan', 'CMB': 'Sri Lanka', 
-            'LHE': 'Pakistan', 'BKK': 'Thailand', 'KBV': 'Thailand', 'LGK': 'Malaysia', 'UTP': 'Thailand', 
+            'LHE': 'Pakistan', 'BKK': 'Thailand', 'DMK': 'Thailand', 'KBV': 'Thailand', 'LGK': 'Malaysia', 'UTP': 'Thailand', 
             'PEN': 'Malaysia', 'IST': 'Turkey', 'ESB': 'Turkey', 'ASB': 'Turkmenistan', 'GYD': 'Azerbaijan', 
             'MSQ': 'Belarus', 'VKO': 'Russia', 'BEG': 'Serbia', 'WAW': 'Poland', 'TAS': 'Uzbekistan', 
             'SKD': 'Uzbekistan', 'SJJ': 'Bosnia and Herzegovina', 'ALA': 'Kazakhstan', 'NQZ': 'Kazakhstan', 
@@ -463,4 +463,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
 
