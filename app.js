@@ -390,19 +390,32 @@ document.addEventListener('DOMContentLoaded', () => {
       const originUpper = originInputVal.toUpperCase();
       const destinationUpper = destInputVal.toUpperCase();
 
-      if (originUpper === "ASM" || originUpper === "ASMARA" || destinationUpper === "ASM" || destinationUpper === "ASMARA") {
-        const originName = fzResolveName(originInputVal);
-        const destinationName = fzResolveName(destInputVal);
-        if (fzResultDiv) {
-          if (hasValidWeight) {
-            const total = Math.round(120 * weightKg * 100) / 100;
-            fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: 120 AED | Total for ${weightKg} kg: ${total} AED`;
-          } else {
-            fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: 120 AED`;
-          }
-        }
-        return;
-      }
+      const ASMARA_PRICE = 120;
+
+const isAsmara = ["ASM", "ASMARA"];
+
+if (
+  isAsmara.includes(originUpper) ||
+  isAsmara.includes(destinationUpper)
+) {
+  const originName = fzResolveName(originInputVal);
+  const destinationName = fzResolveName(destInputVal);
+
+  if (fzResultDiv) {
+    if (hasValidWeight) {
+      const total = Math.round(ASMARA_PRICE * weightKg * 100) / 100;
+
+      fzResultDiv.textContent =
+        `The Price Per Kilo From ${originName} To ${destinationName} Is: ${ASMARA_PRICE} AED | Total for ${weightKg} kg: ${total} AED`;
+    } else {
+      fzResultDiv.textContent =
+        `The Price Per Kilo From ${originName} To ${destinationName} Is: ${ASMARA_PRICE} AED`;
+    }
+  }
+
+  return;
+}
+        
 
       const zone1 = fzGetZone(originInputVal);
       const zone2 = fzGetZone(destInputVal);
