@@ -395,10 +395,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const destinationName = fzResolveName(destInputVal);
         if (fzResultDiv) {
           if (hasValidWeight) {
-            const total = Math.round(80 * weightKg * 100) / 100;
-            fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: 80 AED | Total for ${weightKg} kg: ${total} AED`;
+            const total = Math.round(120 * weightKg * 100) / 100;
+            fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: 120 AED | Total for ${weightKg} kg: ${total} AED`;
           } else {
-            fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: 80 AED`;
+            fzResultDiv.textContent = `The Price Per Kilo From ${originName} To ${destinationName} Is: 120 AED`;
           }
         }
         return;
