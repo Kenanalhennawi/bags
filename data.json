@@ -167,8 +167,10 @@
       "Zone 6": "ZONE6"
     },
     "7": {
-      "Bangkok": "DMK", "DMK": "DMK",
-      "Bangkok": "BKK", "BKK": "BKK",
+      "Bangkok": "BKK",
+"BKK": "BKK",
+"Bangkok DMK": "DMK",
+"DMK": "DMK",
       "Krabi": "KBV", "KBV": "KBV",
       "Langkawi": "LGK", "LGK": "LGK",
       "Pattaya": "UTP", "UTP": "UTP",
@@ -252,7 +254,7 @@
     "ADD": "Addis Ababa", "DAR": "Dar es Salaam", "MBA": "Mombasa", "NBO": "Nairobi", "DEL": "Delhi",
     "KHI": "Karachi", "DAC": "Dhaka", "LRR": "Lar", "UFA": "Ufa", "BKK": "Bangkok", "DMK": "Bangkok",
     "LGK": "Langkawi", "PEN": "Penang", "IST": "Istanbul", "TBS": "Tbilisi", "VKO": "Moscow",
-    "MCT": "Muscat", "SLL": "Salalah", "AHB": "Abha", "ULH": "Alula", "AJF": "Jouf",
+    "MCT": "Muscat", "SLL": "Salalah", "AHB": "Abha", "ULH": "AlUla", "AJF": "Jouf",
     "MED": "Madinah", "NUM": "Neom", "EAM": "Nejran", "AQI": "Qaisumah", "TUU": "Tabuk",
     "RSI": "The Red Sea", "ELQ": "Gassim", "GIZ": "Gizan", "HAS": "Ha'Il", "HOF": "Hofuf",
     "TIF": "Taif", "YNB": "Yanbu", "IFN": "Esfahan", "KER": "Kerman", "EBL": "Erbil",
