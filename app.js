@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'LED': 'Russia', 'TBS': 'Georgia', 'TIV': 'Montenegro', 'TIA': 'Albania', 'UFA': 'Russia', 
             'VOG': 'Russia', 'BSZ': 'Kyrgyzstan', 'SVX': 'Russia', 'EVN': 'Armenia', 'ZAG': 'Croatia',
             'BUZ': 'Iran', 'GSM': 'Iran', 'TBZ': 'Iran', 'PEW': 'Pakistan', 'AYT': 'Turkey', 
-            'RMO': 'Moldova', 'IAS': 'Romania', 'RIX': 'Latvia', 'VNO': 'Lithuania'
+            'RMO': 'Moldova', 'IAS': 'Romania', 'RIX': 'Latvia', 'BEN': 'Libya', 'ISU': 'Iraq', 'PKR': 'Nepal', 'VNO': 'Lithuania'
         };
 
         const destinationMap = new Map();
