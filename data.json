@@ -282,7 +282,7 @@
     "RIX": "Riga", "VNO": "Vilnius"
   },
   "iata_to_country": {
-    "AE": "United Arab Emirates", "QA": "Qatar", "KG": "Kyrgyzstan", "SA": "Saudi Arabia",
+    "AE": "United Arab Emirates", "UAE": "United Arab Emirates", "QA": "Qatar", "KG": "Kyrgyzstan", "SA": "Saudi Arabia", "KSA": "Saudi Arabia",
     "EG": "Egypt", "SY": "Syria", "ET": "Ethiopia", "IN": "India", "PK": "Pakistan",
     "BD": "Bangladesh", "TH": "Thailand", "MY": "Malaysia", "TR": "Turkey", "RU": "Russia",
     "JO": "Jordan", "LB": "Lebanon", "IR": "Iran", "BH": "Bahrain",
@@ -321,7 +321,7 @@
 "HR": "Croatia",
 "BG": "Bulgaria",
 "TJ": "Tajikistan",
-"KG": "Kyrgyzstan"
+
   },
   "prices": {
   "1,1": 0,
