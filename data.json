@@ -66,6 +66,8 @@
       "RSI": "RSI"
     },
     "4": {
+      "Aleppo": "ALP",
+      "ALP": "ALP",
       "Amman": "AMM",
       "AMM": "AMM",
       "Baghdad": "BGW",
@@ -384,6 +386,7 @@
     }
   },
   "iata_to_city": {
+    "ALP": "Aleppo",
     "DXB": "Dubai",
     "AUH": "Abu Dhabi",
     "BAH": "Bahrain",
@@ -599,7 +602,7 @@
     "CZ": "Czech Republic"
   },
   "prices": {
-    "1,1": 0,
+    "1,1": null,
     "1,2": 50,
     "1,3": 50,
     "1,4": 70,
