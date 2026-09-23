@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'NUM': 'Saudi Arabia', 'EAM': 'Saudi Arabia', 'AQI': 'Saudi Arabia', 'TUU': 'Saudi Arabia', 
             'RSI': 'Saudi Arabia', 'ELQ': 'Saudi Arabia', 'GIZ': 'Saudi Arabia', 'HAS': 'Saudi Arabia', 
             'HOF': 'Saudi Arabia', 'JED': 'Saudi Arabia', 'RUH': 'Saudi Arabia', 'TIF': 'Saudi Arabia', 
-            'YNB': 'Saudi Arabia', 'AMM': 'Jordan', 'BGW': 'Iraq', 'DAM': 'Syria', 'IFN': 'Iran', 
+            'YNB': 'Saudi Arabia', 'AMM': 'Jordan', 'BGW': 'Iraq', 'DAM': 'Syria', 'ALP': 'Syria', 'IFN': 'Iran', 
             'KER': 'Iran', 'BEY': 'Lebanon', 'EBL': 'Iraq', 'IKA': 'Iran', 'BSR': 'Iraq', 
             'BND': 'Iran', 'KIH': 'Iran', 'LRR': 'Iran', 'MHD': 'Iran', 'NJF': 'Iraq', 
             'SYZ': 'Iran', 'SUF': 'Iraq', 'TLV': 'Israel', 'ADD': 'Ethiopia', 'DAR': 'Tanzania', 
