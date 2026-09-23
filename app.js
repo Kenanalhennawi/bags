@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const originUpper = originInputVal.toUpperCase();
       const destinationUpper = destInputVal.toUpperCase();
 
-      const ASMARA_PRICE = 120;
+      const ASMARA_PRICE = 250;
 
 const isAsmara = ["ASM", "ASMARA"];
 
@@ -421,6 +421,10 @@ if (
       const zone2 = fzGetZone(destInputVal);
       if (!zone1 || !zone2) {
         if(fzResultDiv) fzResultDiv.textContent = "Destination not found for Flydubai. Please check your input.";
+        return;
+      }
+      if (zone1 === 1 && zone2 === 1) {
+        if (fzResultDiv) fzResultDiv.textContent = "Not applicable: no airport baggage rate is published for this route (Zone 1 to Zone 1).";
         return;
       }
       const priceKey = `${zone1},${zone2}`;
